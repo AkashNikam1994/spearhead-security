@@ -1,0 +1,528 @@
+import Image from "next/image";
+import Link from "next/link";
+import {
+  ShieldCheck, Users, ClipboardList, HeartHandshake,
+  ArrowRight, CheckCircle2, Cctv, Fingerprint, FileCheck2,
+  Award, Compass, Scale, Eye, Briefcase,
+} from "lucide-react";
+import Reveal from "@/components/ui/Reveal";
+import { SectionHeading, GoldButton, OutlineButton } from "@/components/ui/Section";
+import ProcessTimeline from "@/components/home/ProcessTimeline";
+import Testimonials from "@/components/home/Testimonials";
+import { siteConfig, contact, trustStrip, differentiators, processSteps, peoplePoints, techCapabilities, techFutureNote, complianceItems, leadershipIntro, leadershipProfiles, ctaButton } from "@/config/company";
+import { activeServices } from "@/config/services";
+import { homepageIndustries } from "@/config/industries";
+import { careerBenefits } from "@/config/careers";
+
+/* ───────────────────────── Hero (Section 1) ───────────────────────── */
+function Hero() {
+  return (
+    <section className="relative flex min-h-[640px] items-center bg-navy-950 md:min-h-[700px]">
+      <Image
+        src="/images/home/hero.png"
+        alt="Professional security personnel at a modern commercial facility"
+        fill priority sizes="100vw"
+        className="object-cover object-[35%_center]"
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-navy-950/95 via-navy-950/75 to-navy-950/30" />
+      {/* decorative coverage radar */}
+      <div className="pointer-events-none absolute right-[8%] top-1/2 hidden h-72 w-72 -translate-y-1/2 lg:block" aria-hidden>
+        <div className="absolute inset-0 rounded-full border border-gold-500/25" />
+        <div className="absolute inset-8 rounded-full border border-white/15" />
+        <div className="absolute inset-16 rounded-full border border-white/10" />
+        <div className="absolute left-1/2 top-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold-400" />
+      </div>
+
+      <div className="container-site relative z-10 py-20">
+        <div className="max-w-2xl">
+          <Reveal>
+            <p className="eyebrow-on-dark">Professional Security Solutions</p>
+            <h1 className="mt-4 font-heading text-[2.4rem] font-extrabold leading-[1.12] text-white md:text-[3.4rem]">
+              Security That Protects More Than Property.
+            </h1>
+            <p className="mt-5 max-w-xl text-[17px] leading-relaxed text-white/75">
+              Reliable security solutions built around trained professionals, disciplined
+              operations and a commitment to protecting what matters most to your organisation.
+            </p>
+          </Reveal>
+          <Reveal delay={140}>
+            <div className="mt-9 flex flex-wrap gap-4">
+              <GoldButton href={ctaButton.href}>Request a Security Assessment</GoldButton>
+              <OutlineButton href="/services" onDark>Explore Our Services</OutlineButton>
+            </div>
+            <p className="mt-8 flex items-center gap-3 text-[14px] font-semibold uppercase tracking-[0.18em] text-gold-400">
+              <ShieldCheck className="h-5 w-5" aria-hidden />
+              People&ensp;|&ensp;Process&ensp;|&ensp;Professionalism
+            </p>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ───────────────────── Trust strip (Section 2) ───────────────────── */
+const trustIcons = [ShieldCheck, Users, ClipboardList, HeartHandshake];
+
+function TrustStrip() {
+  return (
+    <section className="relative z-10 border-b border-slate-200 bg-white">
+      <div className="container-site grid gap-8 py-10 sm:grid-cols-2 lg:grid-cols-4">
+        {trustStrip.map((item, i) => {
+          const Icon = trustIcons[i];
+          return (
+            <div key={item.title} className="flex items-start gap-4">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-navy-900 text-gold-400">
+                <Icon className="h-5 w-5" aria-hidden />
+              </span>
+              <span>
+                <span className="block font-heading text-[15.5px] font-bold text-ink">{item.title}</span>
+                <span className="mt-1 block text-[13.5px] leading-snug text-body">{item.text}</span>
+              </span>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────────── Introduction (Section 3) ────────────────────── */
+function Intro() {
+  return (
+    <section className="section">
+      <div className="container-site grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <Reveal>
+          <div className="relative">
+            <div className="absolute -left-4 -top-4 h-full w-full rounded-2xl border border-gold-500/40" aria-hidden />
+            <Image
+              src="/images/home/intro.png"
+              alt="Spearhead Security supervisor briefing an officer at a corporate site"
+              width={1200} height={900}
+              className="relative rounded-2xl object-cover shadow-card"
+            />
+          </div>
+        </Reveal>
+        <Reveal delay={120}>
+          <SectionHeading align="left" eyebrow="About Spearhead" title="Your Trusted Partner in Professional Security" />
+          <div className="mt-6 space-y-4 text-[15.5px] leading-relaxed text-body">
+            <p>
+              Security requires more than a visible presence. It requires planning, vigilance,
+              accountability and the ability to respond effectively to changing situations.
+            </p>
+            <p>
+              At Spearhead Security, we believe that effective protection starts with understanding
+              our clients&rsquo; environments and developing security arrangements around their
+              operational requirements.
+            </p>
+            <p>
+              Our approach brings together professional personnel, clear operating procedures and
+              continuous supervision to deliver dependable security solutions.
+            </p>
+          </div>
+          <div className="mt-8">
+            <GoldButton href="/about-us">Discover Spearhead</GoldButton>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────────── Services grid (Section 4) ───────────────────── */
+function ServicesGrid() {
+  return (
+    <section className="section bg-mist">
+      <div className="container-site">
+        <Reveal>
+          <SectionHeading
+            eyebrow="What We Deliver"
+            title="Comprehensive Security Solutions"
+            description="Tailored security services designed around the risks and operational needs of your organisation."
+          />
+        </Reveal>
+        <div className="mt-14 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+          {activeServices.map((s, i) => (
+            <Reveal key={s.slug} delay={(i % 3) * 90}>
+              <Link
+                href={`/services/${s.slug}`}
+                className="group block h-full overflow-hidden rounded-xl border border-slate-200 bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-cardHover"
+              >
+                <div className="relative aspect-[16/10] overflow-hidden bg-navy-900">
+                  <Image src={s.image} alt={`${s.title} — Spearhead Security`} fill sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" className="card-img object-cover" />
+                </div>
+                <div className="p-6">
+                  <h3 className="font-heading text-[18px] font-bold text-ink group-hover:text-navy-700">{s.title}</h3>
+                  <p className="mt-2.5 text-[14px] leading-relaxed text-body">{s.summary}</p>
+                  <span className="mt-4 inline-flex items-center gap-1.5 text-[13.5px] font-bold text-gold-600 transition-colors group-hover:text-gold-500">
+                    Explore Service <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                  </span>
+                </div>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────────── Industries grid (Section 5) ─────────────────── */
+function IndustriesGrid() {
+  const items = homepageIndustries.slice(0, 6);
+  return (
+    <section className="section">
+      <div className="container-site">
+        <Reveal>
+          <SectionHeading
+            eyebrow="Industries We Serve"
+            title="Security Solutions Across Diverse Industries"
+            description="Every environment carries different risks — our security arrangements are designed around each industry's operating reality."
+          />
+        </Reveal>
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map((ind, i) => (
+            <Reveal key={ind.slug} delay={(i % 3) * 90}>
+              <Link
+                href={`/industries#${ind.slug}`}
+                className="group relative block h-56 overflow-hidden rounded-xl bg-navy-950 md:h-64"
+              >
+                <Image src={ind.image} alt={`${ind.name} — security by Spearhead`} fill sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" className="card-img object-cover opacity-70" />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-5">
+                  <h3 className="font-heading text-[17px] font-bold text-white">{ind.name}</h3>
+                  <p className="mt-1 line-clamp-2 text-[13.5px] leading-snug text-white/70">{ind.short}</p>
+                  <span className="mt-2 text-[12.5px] font-bold uppercase tracking-wider text-gold-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    View details →
+                  </span>
+                </div>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+        <div className="mt-10 text-center">
+          <OutlineButton href="/industries">View All Industries</OutlineButton>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────────── Why Spearhead (Section 6) ───────────────────── */
+const diffIcons = [Award, Users, ClipboardList, Eye, HeartHandshake];
+
+function WhySpearhead() {
+  return (
+    <section className="section bg-navy-900">
+      {/* subtle decorative grid */}
+      <div className="container-site relative">
+        <Reveal>
+          <SectionHeading
+            eyebrow="Why Spearhead"
+            title="Why Organisations Choose Spearhead"
+            description="Five commitments that define how we staff, operate and supervise every security engagement."
+            onDark
+          />
+        </Reveal>
+        <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
+          {differentiators.map((d, i) => {
+            const Icon = diffIcons[i];
+            return (
+              <Reveal key={d.title} delay={i * 80}>
+                <div className="relative border-t-2 border-gold-500/60 pt-6">
+                  <Icon className="h-8 w-8 text-gold-400" aria-hidden />
+                  <h3 className="mt-4 font-heading text-[16.5px] font-bold text-white">{d.title}</h3>
+                  <p className="mt-2.5 text-[13.5px] leading-relaxed text-white/65">{d.text}</p>
+                  <span className="pointer-events-none absolute right-0 -top-4 font-heading text-4xl font-extrabold text-white/5" aria-hidden>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+              </Reveal>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────── Delivery framework (Section 7) ──────────────────── */
+function Framework() {
+  return (
+    <section className="section bg-gradient-to-b from-navy-950 via-navy-900 to-navy-950">
+      <div className="container-site">
+        <Reveal>
+          <SectionHeading
+            eyebrow="Operational Framework"
+            title="Our Approach to Delivering Security Excellence"
+            description="A structured six-stage delivery model takes every engagement from first understanding to continuous improvement."
+            onDark
+          />
+        </Reveal>
+        <Reveal delay={150}>
+          <div className="mt-16">
+            <ProcessTimeline step={0} />
+            <ProcessTimeline step={1} />
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────── People & training (Section 8) ───────────────────── */
+function PeopleTraining() {
+  return (
+    <section className="section">
+      <div className="container-site grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <Reveal>
+          <SectionHeading
+            align="left"
+            eyebrow="Our People"
+            title="Strong Security Begins With Strong People"
+            description="A security service is only as dependable as the people delivering it — so selection, training and supervision come first."
+          />
+          <ul className="mt-7 grid gap-x-6 gap-y-3.5 sm:grid-cols-2">
+            {peoplePoints.map((p) => (
+              <li key={p} className="flex items-start gap-2.5 text-[14.5px] leading-snug text-body">
+                <CheckCircle2 className="mt-0.5 h-4.5 w-4.5 h-[18px] w-[18px] shrink-0 text-gold-500" aria-hidden />
+                {p}
+              </li>
+            ))}
+          </ul>
+          <div className="mt-9">
+            <GoldButton href="/about-us#people">Learn About Our People</GoldButton>
+          </div>
+        </Reveal>
+        <Reveal delay={120}>
+          <Image
+            src="/images/home/training.png"
+            alt="Spearhead Security team during an operational briefing session"
+            width={1400} height={950}
+            className="w-full rounded-2xl object-cover shadow-card"
+          />
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────── Technology (Section 9) ──────────────────────────── */
+function Technology() {
+  return (
+    <section className="section bg-mist">
+      <div className="container-site grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <Reveal className="order-2 lg:order-1" >
+          <Image
+            src="/images/pages/security-monitor.png"
+            alt="Security operations monitoring and inspection reporting"
+            width={1100} height={800}
+            className="w-full rounded-2xl object-cover shadow-card"
+          />
+        </Reveal>
+        <Reveal delay={120} className="order-1 lg:order-2">
+          <SectionHeading
+            align="left"
+            eyebrow="Operational Excellence"
+            title="Technology Supported. People Focused."
+            description="Technology strengthens our operations as a support layer to trained personnel — it does not replace them."
+          />
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            {techCapabilities.map((t) => (
+              <div key={t.title} className="rounded-xl border border-slate-200 bg-white p-4 shadow-card">
+                <h3 className="flex items-center gap-2 font-heading text-[14.5px] font-bold text-ink">
+                  {t.title === "CCTV Monitoring" && <Cctv className="h-4.5 w-4.5 h-[18px] w-[18px] text-gold-600" aria-hidden />}
+                  {(t.title === "Digital Attendance Management" || t.title === "Visitor Management") && (
+                    <Fingerprint className="h-4.5 w-4.5 h-[18px] w-[18px] text-gold-600" aria-hidden />
+                  )}
+                  {(t.title === "Site Inspection Reporting" || t.title === "Incident Reporting") && (
+                    <FileCheck2 className="h-4.5 w-4.5 h-[18px] w-[18px] text-gold-600" aria-hidden />
+                  )}
+                  {t.title === "Patrol Monitoring" && <Compass className="h-4.5 w-4.5 h-[18px] w-[18px] text-gold-600" aria-hidden />}
+                  {t.title}
+                </h3>
+                <p className="mt-1.5 text-[13px] leading-snug text-body">{t.text}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-6 flex items-start gap-2.5 rounded-lg border border-gold-500/40 bg-gold-100/60 p-4 text-[13px] leading-relaxed text-ink">
+            <Briefcase className="mt-0.5 h-4 w-4 shrink-0 text-gold-600" aria-hidden />
+            {techFutureNote}
+          </p>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────── Compliance (Section 10) ─────────────────────────── */
+const complianceIcons = [Scale, Users, ClipboardList, Cctv, Fingerprint, FileCheck2, Eye, Compass, HeartHandshake];
+
+function Compliance() {
+  return (
+    <section className="section">
+      <div className="container-site">
+        <Reveal>
+          <SectionHeading
+            eyebrow="Governance"
+            title="Commitment to Compliance and Service Quality"
+            description="Disciplined documentation underpins every deployment — from licensing and verification to service reviews."
+          />
+        </Reveal>
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {complianceItems.map((c, i) => {
+            const Icon = complianceIcons[i];
+            return (
+              <Reveal key={c.title} delay={(i % 3) * 80}>
+                <div className="h-full rounded-xl border border-slate-200 bg-white p-6 shadow-card transition-shadow hover:shadow-cardHover">
+                  <Icon className="h-7 w-7 text-gold-600" aria-hidden />
+                  <h3 className="mt-4 font-heading text-[15.5px] font-bold text-ink">{c.title}</h3>
+                  <p className="mt-2 text-[13.5px] leading-relaxed text-body">{c.text}</p>
+                </div>
+              </Reveal>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────── Leadership (Section 11) ─────────────────────────── */
+function Leadership() {
+  return (
+    <section className="section bg-mist">
+      <div className="container-site">
+        <Reveal>
+          <SectionHeading
+            eyebrow="Leadership"
+            title="Leadership That Understands Security Operations"
+            description={leadershipIntro}
+          />
+        </Reveal>
+        <div className="mt-14 grid gap-6 md:grid-cols-3">
+          {leadershipProfiles.map((p, i) => (
+            <Reveal key={p.designation} delay={i * 90}>
+              <div className="h-full rounded-xl border border-slate-200 bg-white p-7 text-center shadow-card">
+                <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-navy-900 text-gold-400">
+                  <ShieldCheck className="h-7 w-7" aria-hidden />
+                </span>
+                <h3 className="mt-4 font-heading text-[16.5px] font-bold text-ink">{p.name}</h3>
+                <p className="mt-1 text-[13px] font-semibold uppercase tracking-wider text-gold-600">{p.designation}</p>
+                <p className="mt-3 border-t border-dashed border-slate-200 pt-3 text-[13.5px] italic leading-relaxed text-body">
+                  {p.bio}
+                </p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────── Careers teaser (Section 13) ─────────────────────── */
+function CareersTeaser() {
+  return (
+    <section className="section">
+      <div className="container-site grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <Reveal>
+          <Image
+            src="/images/home/careers.png"
+            alt="Professional team of Spearhead Security officers"
+            width={1400} height={900}
+            className="w-full rounded-2xl object-cover shadow-card"
+          />
+        </Reveal>
+        <Reveal delay={120}>
+          <SectionHeading
+            align="left"
+            eyebrow="Careers"
+            title="Build Your Career With Spearhead Security"
+            description="Join a professional team committed to discipline, responsibility, service excellence and meaningful work."
+          />
+          <ul className="mt-6 space-y-3">
+            {careerBenefits.slice(0, 4).map((b) => (
+              <li key={b} className="flex items-start gap-2.5 text-[14.5px] text-body">
+                <CheckCircle2 className="mt-0.5 h-[18px] w-[18px] shrink-0 text-gold-500" aria-hidden />
+                {b}
+              </li>
+            ))}
+          </ul>
+          <div className="mt-8">
+            <OutlineButton href="/careers">Explore Career Opportunities</OutlineButton>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────── Final CTA (Section 14) ──────────────────────────── */
+function FinalCTA() {
+  return (
+    <section className="relative overflow-hidden bg-navy-950">
+      <Image src="/images/home/cta.png" alt="" fill sizes="100vw" className="object-cover opacity-40" />
+      <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-950/85 to-navy-900/70" />
+      <div className="container-site relative z-10 py-20 text-left md:py-24">
+        <Reveal>
+          <div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
+            <div className="max-w-2xl">
+              <p className="eyebrow-on-dark">Get Started</p>
+              <h2 className="mt-3 font-heading text-[1.9rem] font-extrabold leading-tight text-white md:text-[2.4rem]">
+                Looking for a Reliable Security Partner?
+              </h2>
+              <p className="mt-4 text-[16px] leading-relaxed text-white/70">
+                Let&rsquo;s understand your security requirements and design an appropriate
+                solution for your organisation.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-4">
+              <GoldButton href={ctaButton.href}>Request a Security Assessment</GoldButton>
+              <Link
+                href="/contact"
+                className="inline-flex items-center rounded-md border border-white/40 px-6 py-3.5 text-[15px] font-bold text-white transition-colors hover:border-gold-400 hover:text-gold-400"
+              >
+                Contact Our Team
+              </Link>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/* ────────────────────────── Page assembly ────────────────────────── */
+export default function HomePage() {
+  return (
+    <>
+      <Hero />
+      <TrustStrip />
+      <Intro />
+      <ServicesGrid />
+      <IndustriesGrid />
+      <WhySpearhead />
+      <Framework />
+      <PeopleTraining />
+      <Technology />
+      <Compliance />
+      <Leadership />
+
+      {/* Testimonials (Section 12) */}
+      <section className="section bg-white">
+        <Reveal>
+          <SectionHeading
+            eyebrow="Client Feedback"
+            title="Trusted Through Service. Strengthened by Relationships."
+            description="What our clients say about working with Spearhead Security."
+          />
+        </Reveal>
+        <Testimonials />
+      </section>
+
+      <CareersTeaser />
+      <FinalCTA />
+    </>
+  );
+}

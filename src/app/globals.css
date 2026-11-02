@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --header-h: 4.5rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-white font-sans text-[16px] leading-relaxed text-body antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold text-ink;
+  }
+  ::selection {
+    @apply bg-navy-900 text-white;
+  }
+  /* Accessible focus states (WCAG) */
+  a, button, input, select, textarea, [tabindex] {
+    outline: none;
+  }
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible,
+  input:focus-visible, select:focus-visible, textarea:focus-visible {
+    @apply ring-2 ring-gold-500 ring-offset-2 ring-offset-white;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .container-site {
+    @apply mx-auto w-full max-w-site px-5 md:px-8;
+  }
+  .eyebrow {
+    @apply text-[13px] font-semibold uppercase tracking-[0.2em] text-gold-600;
+  }
+  .eyebrow-on-dark {
+    @apply text-[13px] font-semibold uppercase tracking-[0.2em] text-gold-400;
+  }
+  .section {
+    @apply py-16 md:py-24;
+  }
+  .link-underline {
+    @apply relative transition-colors duration-200;
+  }
+  .skip-link {
+    @apply absolute -top-14 left-4 z-[100] rounded bg-navy-900 px-4 py-2 text-sm font-semibold text-white transition-transform focus:translate-y-16;
+  }
+}
+
+/* ── scroll-reveal (progressive enhancement; content is visible without JS) ── */
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    will-change: opacity, transform;
+  }
+  [data-reveal].is-revealed {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ── nav dropdown ─────────────────────────────────────────────────────────── */
+.nav-dropdown {
+  opacity: 0;
+  transform: translateY(6px);
+  visibility: hidden;
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+}
+.nav-item:hover .nav-dropdown,
+.nav-item:focus-within .nav-dropdown {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+}
+
+/* ── card image zoom ──────────────────────────────────────────────────────── */
+.card-img {
+  transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.group:hover .card-img {
+  transform: scale(1.06);
+}
+
+/* ── gold button sheen ────────────────────────────────────────────────────── */
+.btn-gold {
+  @apply relative overflow-hidden bg-gold-500 text-navy-950 transition-colors duration-200;
+}
+.btn-gold:hover {
+  @apply bg-gold-400;
+}
+
+/* vertical timeline connector (mobile) */
+.timeline-v::before {
+  content: "";
+  @apply absolute left-[19px] top-3 bottom-3 w-px bg-navy-700/20;
+}
