@@ -33,7 +33,7 @@ export default function Testimonials() {
       {approvedTestimonials.map((t, i) => (
         <Reveal key={i} delay={i * 90}>
           <figure className="flex h-full flex-col rounded-xl border border-slate-200 bg-white p-7 shadow-card">
-            <Quote className="h-7 w-7 text-gold-500" aria-hidden />
+            <Quote className="h-7 w-7 text-orange-500" aria-hidden />
             <blockquote className="mt-4 flex-1 text-[15px] leading-relaxed text-ink">“{t.testimonial}”</blockquote>
             <figcaption className="mt-6 border-t border-slate-100 pt-4">
               <p className="text-[14.5px] font-bold text-navy-900">{t.client_name}</p>

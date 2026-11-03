@@ -72,7 +72,7 @@ export default function EnquiryForm({ compact = false }: { compact?: boolean }) 
         <p className="mx-auto mt-2 max-w-md text-[14.5px] text-body">{message}</p>
         <button
           onClick={() => setStatus("idle")}
-          className="mt-6 inline-flex rounded-md border border-navy-900/30 px-5 py-2.5 text-[14px] font-bold text-navy-900 hover:border-gold-500 hover:text-gold-600"
+          className="mt-6 inline-flex rounded-md border border-navy-900/30 px-5 py-2.5 text-[14px] font-bold text-navy-900 hover:border-orange-500 hover:text-orange-600"
         >
           Submit another enquiry
         </button>
@@ -171,9 +171,9 @@ export default function EnquiryForm({ compact = false }: { compact?: boolean }) 
 
       <div className="mt-6 flex items-start gap-3">
         <input id="consent" name="consent" type="checkbox" required aria-invalid={!!errors.consent}
-          className="mt-1 h-4 w-4 rounded border-slate-300 text-navy-900 focus:ring-gold-500" />
+          className="mt-1 h-4 w-4 rounded border-slate-300 text-navy-900 focus:ring-orange-500" />
         <label htmlFor="consent" className="text-[13px] leading-relaxed text-body">
-          I consent to Spearhead Security processing the personal data in this enquiry for the purpose of responding to my request, in line with the{" "}
+          I consent to Spearhead Security Service processing the personal data in this enquiry for the purpose of responding to my request, in line with the{" "}
           <a href="/privacy-policy" className="font-semibold text-navy-700 underline">Privacy Policy</a>. <span aria-hidden>*</span>
         </label>
       </div>
@@ -183,7 +183,7 @@ export default function EnquiryForm({ compact = false }: { compact?: boolean }) 
         <button
           type="submit"
           disabled={status === "loading"}
-          className="btn-gold inline-flex items-center gap-2.5 rounded-md px-8 py-3.5 text-[15px] font-bold disabled:opacity-60 disabled:cursor-wait"
+          className="btn-orange inline-flex items-center gap-2.5 rounded-md px-8 py-3.5 text-[15px] font-bold disabled:opacity-60 disabled:cursor-wait"
         >
           {status === "loading" ? (
             <>

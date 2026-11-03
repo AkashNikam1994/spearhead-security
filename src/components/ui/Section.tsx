@@ -28,7 +28,7 @@ export function SectionHeading({
   );
 }
 
-export function GoldButton({
+export function OrangeButton({
   href,
   children,
   className = "",
@@ -38,7 +38,7 @@ export function GoldButton({
   className?: string;
 }) {
   return (
-    <Link href={href} className={`btn-gold group inline-flex items-center gap-2.5 rounded-md px-6 py-3.5 text-[15px] font-bold ${className}`}>
+    <Link href={href} className={`btn-orange group inline-flex items-center gap-2.5 rounded-md px-6 py-3.5 text-[15px] font-bold ${className}`}>
       {children}
       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
     </Link>
@@ -61,8 +61,8 @@ export function OutlineButton({
       href={href}
       className={`inline-flex items-center gap-2.5 rounded-md border px-6 py-3.5 text-[15px] font-bold transition-colors ${
         onDark
-          ? "border-white/40 text-white hover:border-gold-400 hover:text-gold-400"
-          : "border-navy-900/30 text-navy-900 hover:border-gold-500 hover:text-gold-600"
+          ? "border-white/40 text-white hover:border-orange-400 hover:text-orange-400"
+          : "border-navy-900/30 text-navy-900 hover:border-orange-500 hover:text-orange-600"
       } ${className}`}
     >
       {children}

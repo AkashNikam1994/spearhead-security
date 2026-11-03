@@ -21,27 +21,31 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
   title: {
-    default: "Spearhead Security | Professional Security Solutions in India",
-    template: "%s | Spearhead Security",
+    default: "Spearhead Security Service | Professional Security Solutions",
+    template: "%s | Spearhead Security Service",
   },
   description:
-    "Spearhead Security delivers professional security solutions — manned guarding, corporate, industrial, residential and event security — built on trained personnel, disciplined operations and active supervision.",
+    "Spearhead Security Service, established in 2014 and headquartered in Jaysingpur, Maharashtra, provides professional security services for companies, organisations and institutions.",
   keywords: [
-    "professional security services",
-    "corporate security services",
-    "industrial security services",
+    "Spearhead Security Service",
+    "security services in Jaysingpur",
+    "security services in Kolhapur",
+    "industrial security services in Maharashtra",
     "security guard services",
-    "manned guarding",
-    "residential security",
-    "event security",
+    "bank security services",
+    "armed escort services",
+    "private investigation services",
+    "security services in Pune",
+    "security services in Sangli",
+    "security services in Satara",
   ],
   openGraph: {
     type: "website",
-    siteName: "Spearhead Security",
-    title: "Spearhead Security | Professional Security Solutions",
+    siteName: "Spearhead Security Service",
+    title: "Spearhead Security Service | Professional Security Solutions",
     description:
-      "Professional Protection. Disciplined Execution. Trusted Partnerships. Security that protects more than property.",
-    images: ["/images/home/hero.png"],
+      "Spearhead Security Service, established in 2014 and headquartered in Jaysingpur, Maharashtra, provides professional security services for companies, organisations and institutions.",
+    images: ["/images/home/hero.jpg"],
   },
   twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },
@@ -50,7 +54,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#0D2035",
+  themeColor: "#123F62",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

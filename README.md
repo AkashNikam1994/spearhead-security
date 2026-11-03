@@ -1,10 +1,11 @@
-# SPEARHEAD SECURITY — Corporate Website
+# SPEARHEAD SECURITY SERVICE — Corporate Website
 
-A complete, production-ready corporate website for **Spearhead Security** built with
-Next.js (App Router), TypeScript and Tailwind CSS.
+A complete, production-ready corporate website for **Spearhead Security Service** built with
+Next.js (App Router), TypeScript and Tailwind CSS — updated in place to reflect the
+company's official information brochure (source of truth for all company facts).
 
-> **Brand positioning:** Professional Protection. Disciplined Execution. Trusted Partnerships.
-> **Primary message:** Security That Protects More Than Property.
+> **Brand positioning:** Professional Security. Discipline You Can Trust.
+> **Founded:** 2014 by SM Badame — headquartered in Jaysingpur, Maharashtra.
 
 ---
 
@@ -41,15 +42,16 @@ node scripts/api-test.mjs   # exercises /api/career-applications (requires dev s
 
 | Route | Purpose |
 |---|---|
-| `/` | Homepage — all 15 brief sections (hero, trust gap, services, industries, framework, people, compliance, leadership, testimonials placeholder, careers teaser, CTA) |
-| `/about-us` | Vision, mission, values, philosophy, capability, people, quality, governance, timeline placeholder |
-| `/services` | Services landing (all enabled services) |
-| `/services/[slug]` | Dedicated detail page per service (description, challenges, scope, methodology, controls, benefits, industries, FAQs, CTA) |
+| `/` | Homepage — real company intro, stats band, 7-service grid, industries, differentiators, 6-step operations approach, training preview, technology, compliance, founder section, clients & coverage, careers teaser, CTA |
+| `/about-us` | Company introduction, founder statement, values, capabilities, people, welfare/conduct, client references, timeline placeholder |
+| `/services` | Services landing — the seven brochure services + brochure extras (non-active) |
+| `/services/[slug]` | Dedicated detail page per service (overview, highlights, challenges, scope, methodology, controls, benefits, industries, FAQs, CTA) |
 | `/industries` | Anchored sections for every enabled industry |
-| `/our-approach` | Full operational delivery model (10 phases) |
+| `/our-approach` | The brochure's six-step operations approach + supervision standards |
+| `/training` | Training syllabus categories A–F (brochure) + selection funnel (Application → Deployment) |
 | `/careers` | Positions + online application (PDF/DOCX ≤ 2 MB with server-side validation) |
 | `/insights`, `/insights/[slug]` | Article library (draft-state articles are never indexed) |
-| `/contact` | Lead-generation split layout with enquiry form |
+| `/contact` | Lead-generation split layout with enquiry form, verified contact details |
 | `/privacy-policy`, `/terms`, `/cookie-policy` | Legal template pages (marked for legal review) |
 | `/sitemap.xml`, `/robots.txt` | Generated from enabled content |
 | `/api/enquiries` | POST — validated, rate-limited, honeypot-protected |
@@ -64,59 +66,63 @@ Everything editable lives in `src/config/`:
 
 | File | What it controls |
 |---|---|
-| `company.ts` | Legal/brand names, **contact details, WhatsApp, address, hours, map embed, coverage**, trust strip, differentiators, process steps, people points, technology, compliance items, statutory (PSARA/GST) values, leadership profiles, social links, **approved testimonials** |
-| `services.ts` | Service catalogue — `enabled: false` removes a service from homepage grid, dropdown, landing page, footer and sitemap instantly. Full detail-page content per service |
+| `company.ts` | Brand/legal names, founder & bio, workforce figure, **real contact details, address, hours, map embed, coverage locations + caption**, trust strip, stats, differentiators, process steps, selection process, people points, training syllabus (A–F) & notes, technology (honest) , compliance/welfare items, statutory placeholders, leadership profiles, **historical client references** (with required caption), additional brochure capabilities, approved testimonials, social links |
+| `services.ts` | The seven brochure service categories — `enabled: false` removes a service from homepage grid, dropdown, landing page, footer and sitemap instantly. Full detail-page content per service |
 | `industries.ts` | Industry catalogue with `enabled` flags and homepage ranking |
 | `insights.ts` | Articles — `published: false` drafts are never served or indexed |
-| `careers.ts` | Open positions and application options |
+| `careers.ts` | Open positions (brochure-based locations) and application options |
 
 **Factual-accuracy rule:** anything not yet verified by the company is marked
-`placeholder: true` and renders with an obvious "to be confirmed" treatment.
-Never present unverified values as claims.
+`placeholder: true` / `brochureStated: true` and renders with an explicit caption.
+Never present unverified values as current claims.
+
+Brochure-era data retained but captioned (not presented as current):
+workforce "1000+", service locations (Jaysingpur, Kolhapur, Sangli, Satara, Karad,
+Pune), client references (Kirloskar Oil Engines Ltd., FIE Group, Sanjay Ghodawat Group).
+
+Deliberately **not published** (management must verify first): PSARA/licence numbers,
+certifications/awards, testimonials, proprietary technology platforms, guard eligibility
+criteria (education/age/height), commercial terms & conditions.
 
 ---
 
-## 4. Imagery — placeholder system & how to replace it
+## 4. Brand identity & imagery
 
-Because photography was not yet supplied, the build ships with a generator that renders
-**branded navy/steel gradient placeholders** (with subtle chevron/grid/wave motifs) so
-every section looks finished rather than broken:
+The real spearhead shield logo was extracted from the brochure at high DPI with the
+background removed, and the colour system was sampled from the logo artwork:
+
+- `public/brand/logo-mark.png` — shield emblem (transparent)
+- `public/brand/logo-horizontal.png` — full horizontal lockup (transparent)
+- `src/app/icon.png` — favicon generated from the emblem
+- Palette: Navy `#123F62` · Burgundy `#79162D` · Orange `#F17B24` · Mist `#F0F1F1` · Ink `#253242`
+
+Authentic Spearhead photographs extracted from the brochure live in `public/images/`
+(wired through the config files):
+
+```
+public/images/home/…            hero band, intro, training, careers, CTA
+public/images/services/…        real photos for industrial-security, surveillance,
+                                safety-fire-fighting, armed-guards
+public/images/extra/…           guards-award, medal-ceremony, deployment-briefing,
+                                fire-safety-classroom, fire-drill, intro
+public/images/industries/…      industry-scene imagery (generic environments)
+```
+
+Brochure extraction tooling (one-time, kept for re-runs — **dev dependencies**):
 
 ```bash
-node scripts/generate-placeholders.mjs
+node scripts/extract-brochure.mjs         # text + embedded JPEGs from brochure-ref.pdf
+node scripts/render-brochure.mjs          # high-DPI page renders
+node scripts/crop.mjs <in> "l t r b" <out>  # generic crop helper
+node scripts/prepare-brochure-images.mjs  # final logo/photo/favicon prep (rerunnable)
 ```
 
-All 30 images live under `public/images/` with paths wired through the config files:
-
-```
-public/images/home/…            home sections
-public/images/services/…        one per service
-public/images/industries/…      one per industry
-public/images/pages/…           inner-page heroes
-public/brand/…                  logo SVGs (horizontal, horizontal-white, mark)
-```
-
-**To swap in real photography: replace any file with a photo of the same name.**
-The generator only needs to be re-run if you add new slots. Every image is referenced
-from `src/config/*` so real assets drop in with zero code changes.
+These require `brochure-ref.pdf` (not committed; see `.gitignore`) and the dev deps
+`pdf-parse`, `pdfjs-dist`, `@napi-rs/canvas`.
 
 ---
 
-## 5. Logo assets
-
-Rendered as inline SVG components (`src/components/brand/Logo.tsx`) plus static exports:
-
-- `public/brand/logo-horizontal.svg` — dark wordmark for light backgrounds
-- `public/brand/logo-horizontal-white.svg` — white wordmark for dark backgrounds
-- `public/brand/logo-mark-dark.svg` — icon-only
-- `src/app/icon.svg` — favicon (shield + forward spearhead geometry)
-
-The mark combines a geometric shield with an abstract forward spearhead. Final artwork
-should be refined by a designer; the geometry system is intentional and reusable.
-
----
-
-## 6. Lead capture & storage
+## 5. Lead capture & storage
 
 ### Enquiry pipeline (`POST /api/enquiries`)
 
@@ -147,30 +153,30 @@ production, provision Postgres and swap the two functions in `src/lib/store.ts`.
 
 ---
 
-## 7. SEO implementation
+## 6. SEO implementation
 
 - Unique title + description + canonical per page (`src/lib/seo.ts` → `pageMetadata`).
-- Open Graph & Twitter metadata with per-service OG images.
-- Generated `sitemap.xml` (services included, draft insights excluded) and `robots.txt`.
-- `Organization`, `Service`, `BreadcrumbList` and `Article` structured data.
+- Open Graph & Twitter metadata.
+- Generated `sitemap.xml` (all 7 services + `/training` included; draft insights excluded) and `robots.txt`.
+- `Organization` schema: brand name, founding date (2014), founder, real address,
+  telephone (+91 9552666896), email and logo path. Plus `Service`, `BreadcrumbList`
+  and `Article` structured data.
 - Semantic HTML, single H1s, breadcrumbs, internal linking service ↔ industry.
-- Geographical keywords are intentionally **not** targeted until service locations
-  are confirmed (see `contact.coverageLocations`).
+- Historical locations are never listed as branches in metadata.
 
 ---
 
-## 8. Accessibility & performance
+## 7. Accessibility & performance
 
 - WCAG 2.2 AA targets: focus-visible rings, skip-link, labelled forms, aria attributes
   on navigation/mobile panel, contrast-checked palette.
 - `prefers-reduced-motion` respected (scroll-reveal is opt-in via CSS).
 - Static generation for all content pages; `next/image` with priority only on heroes;
   fonts self-hosted via `next/font` (zero layout shift, no third-party requests).
-- First-load JS ≈ 102 kB on content pages.
 
 ---
 
-## 9. Environment variables (`.env.example`)
+## 8. Environment variables (`.env.example`)
 
 | Variable | Purpose |
 |---|---|
@@ -182,51 +188,59 @@ No secrets are read in frontend code; the only `NEXT_PUBLIC_` value is the site 
 
 ---
 
-## 10. Project structure
+## 9. Project structure
 
 ```
 src/
   app/                    routes (App Router) + api/ + sitemap/robots/icon
   components/
-    brand/Logo.tsx        inline logo components
-    layout/Header,Footer  sticky nav, utility bar, dropdown, mobile panel
+    brand/Logo.tsx        real PNG logo (next/image)
+    layout/Header,Footer  sticky nav, utility bar, services dropdown, mobile panel
     home/                 ProcessTimeline, Testimonials
-    services/ServiceDetail reusable detail template
+    services/ServiceDetail        reusable detail template (incl. highlights band)
     forms/                EnquiryForm, CareerForm (client validation + states)
     conversion/           WhatsApp floating button + mobile click-to-call
     ui/                   Reveal, SectionHeading/buttons, PageHero/Breadcrumbs
   config/                 ← ALL editable content
   lib/                    seo, store, rate-limit, mailer, append-json
 scripts/
-  generate-placeholders.mjs   branded image generator
-  api-test.mjs                API smoke tests
-server/db/schema.sql          PostgreSQL schema
-data/                         runtime records (git-ignored)
+  extract/render/crop/prepare brochure tools (dev deps)
+  api-test.mjs            API smoke tests
+  check-image-paths.mjs   verifies every referenced asset exists
+server/db/schema.sql      PostgreSQL schema
+data/                     runtime records (git-ignored)
 public/images, public/brand   assets
 ```
 
 ---
 
-## 11. Pre-launch checklist (company review)
+## 10. Pre-launch checklist (company review)
 
-1. **Confirm every `placeholder: true` value** in `src/config/company.ts` (phone, email,
-   WhatsApp, address, hours, PSARA/GST, leadership profiles, coverage locations).
-2. Replace placeholder imagery with licensed/commissioned photography (§4).
-3. Set `contact.mapEmbedUrl` only for the verified office address.
-4. Add approved testimonials to `approvedTestimonials`; they render automatically.
-5. Review service catalogue against actual offerings (enable/disable in `services.ts`).
-6. Have legal counsel finalise `/privacy-policy`, `/terms`, `/cookie-policy`.
-7. Set `published: true` on approved insights articles only.
-8. Provision PostgreSQL (optional) and wire `src/lib/store.ts`.
-9. Set `NEXT_PUBLIC_SITE_URL` to the production domain.
-10. Run `npm run build && npm run start`, submit both forms once, and check `data/`.
+1. Confirm the **current workforce figure** before removing the brochure-era caption on the
+   1000+ stat (`siteConfig.workforce` in `src/config/company.ts`).
+2. Confirm **current operating coverage** before presenting the brochure locations as active
+   branches (`contact.coverageLocations` / `coverageNote`).
+3. Obtain **client authorisation** before using logos/testimonials for the brochure-listed
+   references (`clientReferences`).
+4. Supply **verified licence/statutory numbers** to replace the `statutory` placeholders.
+5. Confirm current **training programme** to decide whether extra syllabus claims can be made
+   (`trainingNotes`).
+6. Set `contact.whatsapp` when the company's WhatsApp number is known (button auto-appears).
+7. Set `contact.mapEmbedUrl` only for the verified office address.
+8. Review the brochure extras (Event Security, Special Security Squads, Family Assets) —
+   promote to active services only after confirmation (`additionalCapabilities` ↔ `services.ts`).
+9. Have legal counsel finalise `/privacy-policy`, `/terms`, `/cookie-policy`.
+10. Set `published: true` on approved insights articles only.
+11. Provision PostgreSQL (optional) and wire `src/lib/store.ts`.
+12. Set `NEXT_PUBLIC_SITE_URL` to the production domain.
+13. Run `npm run build && npm run start`, submit both forms once, and check `data/`.
 
 ---
 
-## 12. Design reference
+## 11. Design reference
 
-- Primary palette: Midnight Navy `#0D2035` · Steel Blue `#173D5B` · Heritage Gold `#C29A51`
-  · Light `#F3F5F7` · Ink `#202B38` · Body `#637083`.
+- Primary palette (sampled from the brochure logo): Navy `#123F62` · Burgundy `#79162D`
+  · Orange `#F17B24` · Light `#F0F1F1` · Ink `#253242` · Body `#5B6B7C`.
 - Typography: **Manrope** (headings) + **Inter** (body) via `next/font`.
 - Border radius, spacing scale, card shadows and the section rhythm are standardised in
   `src/app/globals.css` + `tailwind.config.ts`.

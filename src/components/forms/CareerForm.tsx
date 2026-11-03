@@ -68,7 +68,7 @@ export default function CareerForm() {
         <p className="mx-auto mt-2 max-w-md text-[14.5px] text-body">{message}</p>
         <button
           onClick={() => setStatus("idle")}
-          className="mt-6 inline-flex rounded-md border border-navy-900/30 px-5 py-2.5 text-[14px] font-bold text-navy-900 hover:border-gold-500 hover:text-gold-600"
+          className="mt-6 inline-flex rounded-md border border-navy-900/30 px-5 py-2.5 text-[14px] font-bold text-navy-900 hover:border-orange-500 hover:text-orange-600"
         >
           Submit another application
         </button>
@@ -136,9 +136,9 @@ export default function CareerForm() {
           <label htmlFor="resume" className={labelCls}>Resume (PDF or DOCX, max 2 MB) <span aria-hidden>*</span></label>
           <label
             htmlFor="resume"
-            className="flex items-center gap-3 rounded-lg border border-dashed border-slate-300 bg-mist px-4 py-4 text-[14px] text-body transition-colors hover:border-gold-500 hover:text-ink"
+            className="flex items-center gap-3 rounded-lg border border-dashed border-slate-300 bg-mist px-4 py-4 text-[14px] text-body transition-colors hover:border-orange-500 hover:text-ink"
           >
-            <FileUp className="h-5 w-5 text-gold-600" aria-hidden />
+            <FileUp className="h-5 w-5 text-orange-600" aria-hidden />
             <span>Attach resume: <strong className="text-ink">Choose file</strong> — PDF / DOCX up to 2 MB</span>
           </label>
           <input id="resume" name="resume" type="file" accept=".pdf,.docx,application/pdf"
@@ -154,9 +154,9 @@ export default function CareerForm() {
 
       <div className="mt-6 flex items-start gap-3">
         <input id="c_consent" name="consent" type="checkbox" required
-          className="mt-1 h-4 w-4 rounded border-slate-300 text-navy-900 focus:ring-gold-500" />
+          className="mt-1 h-4 w-4 rounded border-slate-300 text-navy-900 focus:ring-orange-500" />
         <label htmlFor="c_consent" className="text-[13px] leading-relaxed text-body">
-          I consent to Spearhead Security processing the personal data in this application for recruitment purposes, in line with the{" "}
+          I consent to Spearhead Security Service processing the personal data in this application for recruitment purposes, in line with the{" "}
           <a href="/privacy-policy" className="font-semibold text-navy-700 underline">Privacy Policy</a>. <span aria-hidden>*</span>
         </label>
       </div>
@@ -164,7 +164,7 @@ export default function CareerForm() {
 
       <div className="mt-6">
         <button type="submit" disabled={status === "loading"}
-          className="btn-gold inline-flex items-center gap-2.5 rounded-md px-8 py-3.5 text-[15px] font-bold disabled:opacity-60 disabled:cursor-wait">
+          className="btn-orange inline-flex items-center gap-2.5 rounded-md px-8 py-3.5 text-[15px] font-bold disabled:opacity-60 disabled:cursor-wait">
           {status === "loading" ? (
             <>
               <Loader2 className="h-5 w-5 animate-spin" aria-hidden /> Submitting…

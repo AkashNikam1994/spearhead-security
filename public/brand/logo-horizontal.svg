@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 72" width="240" height="72">
-  <path d="M32 4 L58 12 V34 c0 15-11 24-26 28 C17 58 6 49 6 34 V12 Z" fill="#0D2035" stroke="#C29A51" stroke-width="2.5"/>
-  <path d="M24 18 L48 32 L24 46 V38.5 L33 32 L24 25.5 Z" fill="#C29A51"/>
-  <text x="74" y="36" font-family="Manrope, Inter, Arial, sans-serif" font-size="25" font-weight="800" letter-spacing="3.5" fill="#0D2035">SPEARHEAD</text>
-  <text x="76" y="56" font-family="Manrope, Inter, Arial, sans-serif" font-size="10.5" font-weight="600" letter-spacing="8.2" fill="#C29A51">SECURITY</text>
-</svg>

@@ -112,6 +112,6 @@ export async function POST(req: Request) {
   return NextResponse.json({
     ok: true,
     message:
-      "Thank you for applying to Spearhead Security. Your application has been recorded and our recruitment team will contact you if your profile matches an opening.",
+      "Thank you for applying to Spearhead Security Service. Your application has been recorded and our recruitment team will contact you if your profile matches an opening.",
   });
 }

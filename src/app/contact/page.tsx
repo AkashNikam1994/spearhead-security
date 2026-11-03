@@ -7,9 +7,9 @@ import { contact } from "@/config/company";
 import { activeIndustries } from "@/config/industries";
 
 export const metadata = pageMetadata({
-  title: "Contact Spearhead Security — Request a Security Assessment",
+  title: "Contact Spearhead Security Service | Request a Security Assessment",
   description:
-    "Speak with Spearhead Security about your security requirement. Call, email, WhatsApp or submit an online security enquiry — our team responds to every genuine business enquiry.",
+    "Speak with Spearhead Security Service about your security requirement. Call, email or submit an online security enquiry — Jaysingpur headquarters: 9552666896 / Spearhead076@gmail.com.",
   path: "/contact",
 });
 
@@ -20,7 +20,7 @@ export default function ContactPage() {
         eyebrow="Contact Us"
         title="Tell Us About Your Security Requirements"
         description="Share your facility and requirement — we'll respond with a structured, practical proposal."
-        image="/images/pages/contact.png"
+        image="/images/home/hero.jpg"
         compact
         trail={[{ name: "Home", path: "/" }, { name: "Contact Us", path: "/contact" }]}
       />
@@ -34,7 +34,7 @@ export default function ContactPage() {
 
               <ul className="space-y-5">
                 <li className="flex gap-4 rounded-xl border border-slate-200 bg-white p-5 shadow-card">
-                  <Phone className="h-[21px] w-[21px] shrink-0 text-gold-600" aria-hidden />
+                  <Phone className="h-[21px] w-[21px] shrink-0 text-orange-600" aria-hidden />
                   <div>
                     <p className="text-[13px] font-bold uppercase tracking-wider text-body">Call us</p>
                     {contact.phone.placeholder ? (
@@ -47,7 +47,7 @@ export default function ContactPage() {
                   </div>
                 </li>
                 <li className="flex gap-4 rounded-xl border border-slate-200 bg-white p-5 shadow-card">
-                  <Mail className="h-[21px] w-[21px] shrink-0 text-gold-600" aria-hidden />
+                  <Mail className="h-[21px] w-[21px] shrink-0 text-orange-600" aria-hidden />
                   <div>
                     <p className="text-[13px] font-bold uppercase tracking-wider text-body">Email us</p>
                     {contact.email.placeholder ? (
@@ -60,12 +60,12 @@ export default function ContactPage() {
                   </div>
                 </li>
                 <li className="flex gap-4 rounded-xl border border-slate-200 bg-white p-5 shadow-card">
-                  <MessageCircle className="h-[21px] w-[21px] shrink-0 text-gold-600" aria-hidden />
+                  <MessageCircle className="h-[21px] w-[21px] shrink-0 text-orange-600" aria-hidden />
                   <div>
                     <p className="text-[13px] font-bold uppercase tracking-wider text-body">WhatsApp</p>
                     {contact.whatsapp.placeholder ? (
                       <span className="mt-0.5 block font-heading text-[16px] font-bold text-ink">
-                        {contact.whatsapp.display} <em className="text-[12.5px] font-normal text-body">(to be confirmed)</em>
+                        To be confirmed <em className="text-[12.5px] font-normal text-body">(not published yet)</em>
                       </span>
                     ) : (
                       <a href={contact.whatsapp.href} target="_blank" rel="noopener noreferrer" className="mt-0.5 block font-heading text-[16px] font-bold text-ink hover:text-navy-700">
@@ -75,7 +75,7 @@ export default function ContactPage() {
                   </div>
                 </li>
                 <li className="flex gap-4 rounded-xl border border-slate-200 bg-white p-5 shadow-card">
-                  <MapPin className="h-[21px] w-[21px] shrink-0 text-gold-600" aria-hidden />
+                  <MapPin className="h-[21px] w-[21px] shrink-0 text-orange-600" aria-hidden />
                   <div>
                     <p className="text-[13px] font-bold uppercase tracking-wider text-body">Office</p>
                     <p className="mt-0.5 text-[14.5px] leading-relaxed text-body">
@@ -86,7 +86,7 @@ export default function ContactPage() {
                   </div>
                 </li>
                 <li className="flex gap-4 rounded-xl border border-slate-200 bg-white p-5 shadow-card">
-                  <Clock className="h-[21px] w-[21px] shrink-0 text-gold-600" aria-hidden />
+                  <Clock className="h-[21px] w-[21px] shrink-0 text-orange-600" aria-hidden />
                   <div>
                     <p className="text-[13px] font-bold uppercase tracking-wider text-body">Business hours</p>
                     <p className="mt-0.5 text-[14.5px] text-body">{contact.hours}</p>
@@ -96,7 +96,7 @@ export default function ContactPage() {
 
               {/* Coverage locations */}
               <div className="rounded-xl bg-navy-900 p-6">
-                <p className="text-[13px] font-bold uppercase tracking-wider text-gold-400">Service coverage</p>
+                <p className="text-[13px] font-bold uppercase tracking-wider text-orange-400">Service coverage</p>
                 <ul className="mt-3 flex flex-wrap gap-2">
                   {contact.coverageLocations.map((l) => (
                     <li key={l} className="rounded-full border border-white/15 px-3 py-1.5 text-[12.5px] text-white/70">
@@ -104,6 +104,10 @@ export default function ContactPage() {
                     </li>
                   ))}
                 </ul>
+                <p className="mt-3 text-[11.5px] leading-relaxed text-white/45">
+                  {contact.coverageNote[0].toUpperCase() + contact.coverageNote.slice(1)}. Current
+                  coverage is confirmed per enquiry — headquarters: Jaysingpur.
+                </p>
               </div>
 
               {/* Map — displayed ONLY when a verified address exists */}
@@ -111,7 +115,7 @@ export default function ContactPage() {
                 <div className="overflow-hidden rounded-xl border border-slate-200 shadow-card">
                   <iframe
                     src={contact.mapEmbedUrl}
-                    title="Spearhead Security office location map"
+                    title="Spearhead Security Service office location map"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                     className="h-[280px] w-full border-0"
@@ -152,7 +156,7 @@ export default function ContactPage() {
               <a
                 key={ind.slug}
                 href={`/industries#${ind.slug}`}
-                className="rounded-full border border-slate-300 bg-white px-4 py-2 text-[13.5px] font-semibold text-ink transition-colors hover:border-gold-500 hover:text-gold-600"
+                className="rounded-full border border-slate-300 bg-white px-4 py-2 text-[13.5px] font-semibold text-ink transition-colors hover:border-orange-500 hover:text-orange-600"
               >
                 {ind.name}
               </a>

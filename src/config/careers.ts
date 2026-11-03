@@ -1,5 +1,12 @@
 /**
- * SPEARHEAD SECURITY — CAREERS CONFIGURATION
+ * SPEARHEAD SECURITY SERVICE — CAREERS CONFIGURATION
+ *
+ * Selection basis (aptitude, intelligence, physical and written tests) is
+ * stated in the company brochure. Historical guard eligibility criteria
+ * (education/age/height) are intentionally NOT published here until the
+ * current recruitment policy and compliance requirements are confirmed.
+ *
+ * Service locations are brochure-era and updated only on confirmation.
  */
 
 export type Position = {
@@ -11,37 +18,40 @@ export type Position = {
   open: boolean;
 };
 
+export const brochureLocations = ["Jaysingpur", "Kolhapur", "Sangli", "Satara", "Karad", "Pune"];
+
 export const careerBenefits = [
-  "Structured deployment and duty rosters",
-  "Induction and site-specific training",
-  "Supervisory support across shifts",
-  "Defined standards of conduct and recognition",
-  "Timely documentation and statutory compliance, as applicable",
+  "Training in military drill and professional bearing (per brochure)",
+  "The company's own complete uniform — headgear to footwear",
+  "Attention to applicable wages, benefits and gratuity (per brochure)",
+  "Free monsoon wear for staff (per brochure)",
+  "Administrative team support across deployments",
+  "Structured supervision for a disciplined, professional environment",
 ];
 
 export const positions: Position[] = [
   {
     title: "Security Guard",
     type: "Full-time",
-    locations: ["Add confirmed cities/locations"],
+    locations: brochureLocations,
     description:
-      "Deployed guarding duties — access control, visitor management, patrolling and site responsibilities under defined post orders and supervision.",
+      "Guard deployment at designated points — access control, gate records, entry/exit checks, patrolling and site responsibilities under the company's disciplined operating framework.",
     open: true,
   },
   {
     title: "Security Supervisor",
     type: "Full-time / Rotational",
-    locations: ["Add confirmed cities/locations"],
+    locations: brochureLocations,
     description:
-      "Site rounding, attendance and conduct verification, register audits, guarding performance guidance and client-facing operational coordination.",
+      "Monitoring of security operations at designated points, site inspections, records review (gate records, registers, reports) and client coordination.",
     open: true,
   },
   {
     title: "Operations Management",
     type: "Full-time",
-    locations: ["Add confirmed cities/locations"],
+    locations: brochureLocations,
     description:
-      "Multi-site deployment oversight, quality inspection programmes, compliance documentation, incident review and service performance governance.",
+      "Deployment planning after joint surveys, supervision and inspection programmes, administrative coordination and client-facing operational updates.",
     open: true,
   },
 ];

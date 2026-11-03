@@ -1,9 +1,9 @@
-import { PageHero } from "@/components/ui/PageHero";
+﻿import { PageHero } from "@/components/ui/PageHero";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Privacy Policy",
-  description: "How Spearhead Security handles personal data submitted through this website.",
+  description: "How Spearhead Security Service handles personal data submitted through this website.",
   path: "/privacy-policy",
 });
 
@@ -13,13 +13,13 @@ export default function PrivacyPolicyPage() {
       <PageHero
         eyebrow="Legal"
         title="Privacy Policy"
-        image="/images/pages/contact.png"
+        image="/images/home/hero.jpg"
         compact
         trail={[{ name: "Home", path: "/" }, { name: "Privacy Policy", path: "/privacy-policy" }]}
       />
       <section className="section">
         <div className="container-site max-w-3xl space-y-6 text-[15px] leading-relaxed text-body">
-          <div className="rounded-xl border border-gold-500/40 bg-gold-100/50 p-5 text-[13.5px] text-ink">
+          <div className="rounded-xl border border-orange-500/40 bg-orange-100/50 p-5 text-[13.5px] text-ink">
             <strong>Editable template:</strong> this policy must be reviewed and adapted with the
             company&rsquo;s legal counsel before publishing. It describes general practice only and is
             not legal advice.

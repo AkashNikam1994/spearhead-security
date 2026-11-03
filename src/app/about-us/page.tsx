@@ -1,27 +1,26 @@
 import Image from "next/image";
-import Link from "next/link";
-import { Compass, Eye, Flag, GraduationCap, HeartHandshake, Scale, ShieldCheck, Target } from "lucide-react";
+import { Compass, GraduationCap, Scale, ShieldCheck, Target } from "lucide-react";
 import { PageHero } from "@/components/ui/PageHero";
-import { SectionHeading, GoldButton, OutlineButton } from "@/components/ui/Section";
+import { SectionHeading, OrangeButton, OutlineButton } from "@/components/ui/Section";
 import Reveal from "@/components/ui/Reveal";
 import { pageMetadata } from "@/lib/seo";
-import { siteConfig, differentiators, processSteps, leadershipIntro, peoplePoints } from "@/config/company";
-import { activeServices } from "@/config/services";
+import {
+  siteConfig, differentiators, leadershipIntro, peoplePoints,
+  complianceItems, clientReferences,
+} from "@/config/company";
 
 export const metadata = pageMetadata({
-  title: "About Spearhead Security — Professional Security Solutions Company",
+  title: "About Spearhead Security Service | Founded 2014, Jaysingpur",
   description:
-    "Learn about Spearhead Security — our vision, mission, values, operational approach and commitment to compliance and service quality.",
+    "Spearhead Security Service was founded in 2014 by SM Badame and is headquartered in Jaysingpur, Maharashtra — providing professional security services to companies, organisations and institutions.",
   path: "/about-us",
 });
 
 const values = [
-  { title: "Integrity", Icon: Scale, text: "Honest, transparent conduct with clients, personnel and authorities." },
-  { title: "Discipline", Icon: Flag, text: "Consistent adherence to procedures, duty standards and instructions." },
-  { title: "Accountability", Icon: Target, text: "Clear ownership of responsibilities, records and outcomes." },
-  { title: "Vigilance", Icon: Eye, text: "Alertness and attention to detail in every assignment, every shift." },
-  { title: "Professionalism", Icon: GraduationCap, text: "Trained, presentable and conduct-oriented security personnel." },
-  { title: "Customer Commitment", Icon: HeartHandshake, text: "Service arrangements designed around each client's needs." },
+  { title: "Integrity", Icon: Scale, text: "Honest, disciplined and loyal conduct expected of every personnel." },
+  { title: "Discipline", Icon: Target, text: "Adherence to duty procedures, instructions and professional bearing." },
+  { title: "Vigilance", Icon: ShieldCheck, text: "Alertness and attention to detail in every assignment, every shift." },
+  { title: "Professionalism", Icon: GraduationCap, text: "Trained, presentable personnel in the company's own complete uniform." },
 ];
 
 /* Company timeline — populated ONLY when genuine milestones are supplied.
@@ -33,9 +32,9 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="Our Company"
-        title="About Spearhead Security"
+        title="About Spearhead Security Service"
         description={siteConfig.description}
-        image="/images/pages/about-us.png"
+        image="/images/home/cta.jpg"
         trail={[{ name: "Home", path: "/" }, { name: "About Us", path: "/about-us" }]}
       />
 
@@ -43,55 +42,59 @@ export default function AboutPage() {
       <section className="section">
         <div className="container-site grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <Reveal>
-            <SectionHeading align="left" eyebrow="Who We Are" title="Built Around Discipline, Supervision and Accountability" />
+            <SectionHeading align="left" eyebrow="Who We Are" title="Founded in 2014. Built Around Discipline and Supervision." />
             <div className="mt-6 space-y-4 text-[15.5px] leading-relaxed text-body">
               <p>
-                Spearhead Security provides professional security solutions for organisations
-                that need dependable day-to-day protection of their people, premises and
-                operations. Our work rests on three commitments: experienced leadership, trained
-                personnel and active supervision.
+                Spearhead Security Service was founded in 2014 and is headquartered in Jaysingpur,
+                Maharashtra. The company provides professional security services and trained
+                security personnel to companies, organisations and institutions.
               </p>
               <p>
-                Every engagement begins with understanding the client environment and designing
-                security arrangements around actual operational requirements — access flows,
-                risk areas, working hours and escalation needs.
+                Leadership experience described in the company&rsquo;s brochure as former Special
+                Protection Group (SPG) service and VVIP protection assignments shapes the
+                company&rsquo;s emphasis on disciplined personnel, professional training, monitoring
+                and effective supervision.
               </p>
               <p>
-                Our approach brings together professional personnel, clear operating procedures
-                and continuous supervision to deliver dependable security solutions.
+                The organisation works closely with its clients to understand their premises and
+                specific security requirements before planning and deploying security personnel —
+                with monitoring, regular inspection and operational updates as part of every
+                deployment.
               </p>
+            </div>
+            <div className="mt-8">
+              <OrangeButton href="/services">Explore Our Services</OrangeButton>
             </div>
           </Reveal>
           <Reveal delay={120}>
-            <Image src="/images/home/intro.png" alt="Spearhead Security supervisor at a corporate site" width={1200} height={900} className="w-full rounded-2xl object-cover shadow-card" />
+            <Image src="/images/home/careers.jpg" alt="Spearhead Security Service personnel in the company's own uniform" width={405} height={402} className="w-full rounded-2xl object-cover shadow-card" />
           </Reveal>
         </div>
       </section>
 
-      {/* 3. Vision & mission */}
-      <section className="section bg-mist">
-        <div className="container-site grid gap-8 md:grid-cols-2">
+      {/* 3. Founder statement */}
+      <section className="section bg-navy-900">
+        <div className="container-site max-w-3xl text-center">
           <Reveal>
-            <div className="h-full rounded-2xl border border-slate-200 bg-white p-9 shadow-card">
-              <Compass className="h-8 w-8 text-gold-600" aria-hidden />
-              <h2 className="mt-4 font-heading text-[1.4rem] font-extrabold text-ink">Our Vision</h2>
-              <p className="mt-3 text-[15px] leading-relaxed text-body">
-                To be the security partner organisations trust instinctively — recognised for
-                disciplined execution, dependable personnel and leadership that stays close to
-                every operation.
-              </p>
-            </div>
-          </Reveal>
-          <Reveal delay={110}>
-            <div className="h-full rounded-2xl border border-slate-200 bg-white p-9 shadow-card">
-              <Target className="h-8 w-8 text-gold-600" aria-hidden />
-              <h2 className="mt-4 font-heading text-[1.4rem] font-extrabold text-ink">Our Mission</h2>
-              <p className="mt-3 text-[15px] leading-relaxed text-body">
-                To protect people, property and business continuity through professional security
-                personnel, structured operating procedures, active supervision and an unbroken
-                commitment to client service.
-              </p>
-            </div>
+            <ShieldCheck className="mx-auto h-10 w-10 text-orange-400" aria-hidden />
+            <h2 className="mt-6 font-heading text-[1.35rem] font-extrabold text-white md:text-[1.6rem]">
+              Leadership Built on Professional Security Experience
+            </h2>
+            <p className="mt-5 text-left text-[15px] leading-relaxed text-white/75">
+              Spearhead Security Service was founded in 2014 by SM Badame. As described in the
+              company&rsquo;s information brochure, SM Badame is a former Special Protection Group
+              professional who worked with VVIPs across India and internationally. His professional
+              background and experience have influenced the company&rsquo;s emphasis on security
+              discipline, professional presentation, trained personnel and structured security
+              operations.
+            </p>
+            <p className="mt-5 text-[13px] font-semibold uppercase tracking-[0.2em] text-orange-400">
+              SM Badame — Founder, Spearhead Security Service
+            </p>
+            <p className="mt-4 text-[12px] text-white/45">
+              Details are stated as described in the company&rsquo;s information brochure. No rank,
+              service dates, awards or additional credentials are claimed.
+            </p>
           </Reveal>
         </div>
       </section>
@@ -103,14 +106,14 @@ export default function AboutPage() {
             <SectionHeading
               eyebrow="What Guides Us"
               title="Our Core Values"
-              description="Six values that govern how we select, train and operate — and how we treat our clients and our people."
+              description="Values that reflect how personnel are selected, trained and operated — as described in the company brochure."
             />
           </Reveal>
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {values.map((v, i) => (
-              <Reveal key={v.title} delay={(i % 3) * 80}>
+              <Reveal key={v.title} delay={(i % 4) * 80}>
                 <div className="h-full rounded-xl border border-slate-200 bg-white p-6 shadow-card">
-                  <v.Icon className="h-7 w-7 text-gold-600" aria-hidden />
+                  <v.Icon className="h-7 w-7 text-orange-600" aria-hidden />
                   <h3 className="mt-3.5 font-heading text-[16px] font-bold text-ink">{v.title}</h3>
                   <p className="mt-2 text-[13.5px] leading-relaxed text-body">{v.text}</p>
                 </div>
@@ -120,38 +123,21 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 5. Leadership philosophy */}
-      <section className="section bg-navy-900">
-        <div className="container-site max-w-3xl text-center">
-          <Reveal>
-            <ShieldCheck className="mx-auto h-10 w-10 text-gold-400" aria-hidden />
-            <p className="mt-6 font-heading text-[1.5rem] font-bold leading-relaxed text-white md:text-[1.75rem]">
-              “We believe security quality is decided long before a guard reaches a post — in
-              how carefully a site is assessed, how honestly a deployment is planned and how
-              consistently it is supervised afterwards.”
-            </p>
-            <p className="mt-5 text-[13px] font-semibold uppercase tracking-[0.2em] text-gold-400">
-              Leadership Philosophy
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* 6. Management and operational capabilities */}
+      {/* 5. Management and operational capabilities (brochure differentiators) */}
       <section className="section bg-mist">
         <div className="container-site">
           <Reveal>
             <SectionHeading
               eyebrow="Capability"
               title="Management and Operational Capabilities"
-              description="How our operations are managed — the structures behind every deployment."
+              description="How operations are managed — the structures described in the company brochure behind every deployment."
             />
           </Reveal>
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {differentiators.map((d, i) => (
-              <Reveal key={d.title} delay={i * 70}>
+              <Reveal key={d.title} delay={(i % 4) * 70}>
                 <div className="h-full rounded-xl border border-slate-200 bg-white p-6 shadow-card">
-                  <span className="font-heading text-sm font-extrabold text-gold-600">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="font-heading text-sm font-extrabold text-orange-600">{String(i + 1).padStart(2, "0")}</span>
                   <h3 className="mt-3 font-heading text-[15.5px] font-bold text-ink">{d.title}</h3>
                   <p className="mt-2 text-[13px] leading-relaxed text-body">{d.text}</p>
                 </div>
@@ -166,32 +152,35 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 7. People and workforce development */}
+      {/* 6. People and workforce development → link to /training */}
       <section className="section" id="people">
         <div className="container-site grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <Reveal>
-            <Image src="/images/home/training.png" alt="Spearhead Security personnel during a training briefing" width={1400} height={950} className="w-full rounded-2xl object-cover shadow-card" />
+            <Image src="/images/home/training.jpg" alt="Spearhead Security Service personnel during a training session" width={450} height={330} className="w-full rounded-2xl object-cover shadow-card" />
           </Reveal>
           <Reveal delay={120}>
             <SectionHeading
               align="left"
               eyebrow="Our People"
               title="People and Workforce Development"
-              description="Personnel capability is developed deliberately — induction, site-specific training, conduct standards and supervisory growth."
+              description="Personnel capability is developed deliberately — selection, induction, site-specific briefing, conduct standards and disciplined operations."
             />
             <ul className="mt-7 grid gap-x-6 gap-y-3.5 sm:grid-cols-2">
               {peoplePoints.map((p) => (
                 <li key={p} className="flex items-start gap-2.5 text-[14.5px] leading-snug text-body">
-                  <ShieldCheck className="mt-0.5 h-[17px] w-[17px] shrink-0 text-gold-500" aria-hidden />
+                  <ShieldCheck className="mt-0.5 h-[17px] w-[17px] shrink-0 text-orange-500" aria-hidden />
                   {p}
                 </li>
               ))}
             </ul>
+            <div className="mt-8">
+              <OrangeButton href="/training">See Our Training Approach</OrangeButton>
+            </div>
           </Reveal>
         </div>
       </section>
 
-      {/* 8. Commitment to service quality + 9. Compliance */}
+      {/* 7. Commitment to service quality + compliance (brochure statements) */}
       <section className="section bg-navy-950">
         <div className="container-site grid gap-12 lg:grid-cols-2 lg:gap-16">
           <Reveal>
@@ -202,37 +191,65 @@ export default function AboutPage() {
               onDark
             />
             <ul className="mt-7 space-y-4 text-[14.5px] leading-relaxed text-white/70">
-              <li className="flex gap-3"><ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-gold-400" aria-hidden />Defined standards for attendance, grooming and duty conduct — verified through supervisor rounds.</li>
-              <li className="flex gap-3"><ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-gold-400" aria-hidden />Structured inspection schedules with documented observations and corrective-action tracking.</li>
-              <li className="flex gap-3"><ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-gold-400" aria-hidden />Logged complaints with defined response and closure timelines.</li>
-              <li className="flex gap-3"><ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-gold-400" aria-hidden />Regular client performance reviews and open escalation channels.</li>
+              <li className="flex gap-3"><ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-orange-400" aria-hidden />Security deployment at designated points with active monitoring supervision.</li>
+              <li className="flex gap-3"><ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-orange-400" aria-hidden />Regular inspections with operational updates communicated to clients.</li>
+              <li className="flex gap-3"><ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-orange-400" aria-hidden />Duty records — gate records, registers and reports — maintained per deployment.</li>
+              <li className="flex gap-3"><ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-orange-400" aria-hidden />A strong administrative team ensuring alert and effective duties at all times (per brochure).</li>
             </ul>
           </Reveal>
           <Reveal delay={120}>
             <SectionHeading
               align="left"
               eyebrow="Governance"
-              title="Compliance and Governance"
+              title="Welfare and Conduct Practices"
+              description="Statements made in the company information brochure about how the workforce is treated."
               onDark
             />
             <ul className="mt-7 space-y-4 text-[14.5px] leading-relaxed text-white/70">
-              <li className="flex gap-3"><Scale className="mt-0.5 h-5 w-5 shrink-0 text-gold-400" aria-hidden />Applicable PSARA licensing and statutory registrations for our operations.</li>
-              <li className="flex gap-3"><Scale className="mt-0.5 h-5 w-5 shrink-0 text-gold-400" aria-hidden />Employee identity documentation and background verification, as applicable.</li>
-              <li className="flex gap-3"><Scale className="mt-0.5 h-5 w-5 shrink-0 text-gold-400" aria-hidden />Deployment documentation, duty records and attendance maintained per site.</li>
-              <li className="flex gap-3"><Scale className="mt-0.5 h-5 w-5 shrink-0 text-gold-400" aria-hidden />
-                Structured incident and complaint documentation with client visibility.
-              </li>
+              {complianceItems.slice(0, 4).map((c) => (
+                <li key={c.title} className="flex gap-3">
+                  <Scale className="mt-0.5 h-5 w-5 shrink-0 text-orange-400" aria-hidden />
+                  <span><strong className="font-semibold text-white/90">{c.title}:</strong> {c.text}</span>
+                </li>
+              ))}
             </ul>
+            <p className="mt-5 text-[12px] leading-relaxed text-white/45">
+              Licence and statutory registration details are published only after documentary
+              verification — available on request meanwhile.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* 8. Client references (brochure-historical) */}
+      <section className="section bg-mist">
+        <div className="container-site">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Client References"
+              title={clientReferences.heading}
+              description={clientReferences.subheading}
+            />
+          </Reveal>
+          <div className="mx-auto mt-10 flex max-w-3xl flex-wrap justify-center gap-4">
+            {clientReferences.clients.map((c) => (
+              <span key={c} className="rounded-xl border border-slate-200 bg-white px-6 py-3.5 font-heading text-[15.5px] font-bold text-ink shadow-card">
+                {c}
+              </span>
+            ))}
+          </div>
+          <Reveal delay={150}>
+            <p className="mt-6 text-center text-[12.5px] leading-relaxed text-body/70">{clientReferences.caption}</p>
           </Reveal>
         </div>
       </section>
 
       {/* Company timeline — placeholder */}
       {timelinePlaceholder && (
-        <section className="section bg-mist">
+        <section className="section">
           <div className="container-site">
             <Reveal>
-              <div className="rounded-xl border border-dashed border-navy-700/30 bg-white p-10 text-center shadow-card">
+              <div className="rounded-xl border border-dashed border-navy-700/30 bg-mist p-10 text-center shadow-card">
                 <h2 className="font-heading text-[1.4rem] font-extrabold text-ink">Company Journey</h2>
                 <p className="mx-auto mt-3 max-w-xl text-[14.5px] leading-relaxed text-body">
                   A company timeline will be published here once genuine historical milestones are
@@ -247,7 +264,7 @@ export default function AboutPage() {
         </section>
       )}
 
-      {/* 10. CTA */}
+      {/* 9. CTA */}
       <section className="bg-navy-900">
         <div className="container-site py-14 text-center">
           <Reveal>
@@ -256,8 +273,8 @@ export default function AboutPage() {
               Understand Our Approach Before You Decide
             </h2>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <GoldButton href="/contact">Contact Our Team</GoldButton>
-              <OutlineButton href="/services" onDark>Explore Our Services</OutlineButton>
+              <OrangeButton href="/contact">Contact Our Team</OrangeButton>
+              <OutlineButton href="/our-approach" onDark>Our Approach to Security Operations</OutlineButton>
             </div>
           </Reveal>
         </div>

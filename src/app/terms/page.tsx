@@ -1,9 +1,9 @@
-import { PageHero } from "@/components/ui/PageHero";
+﻿import { PageHero } from "@/components/ui/PageHero";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Terms & Conditions",
-  description: "Terms of use for the Spearhead Security website.",
+  description: "Terms of use for the Spearhead Security Service website.",
   path: "/terms",
 });
 
@@ -13,19 +13,19 @@ export default function TermsPage() {
       <PageHero
         eyebrow="Legal"
         title="Terms & Conditions"
-        image="/images/pages/contact.png"
+        image="/images/home/hero.jpg"
         compact
         trail={[{ name: "Home", path: "/" }, { name: "Website Terms", path: "/terms" }]}
       />
       <section className="section">
         <div className="container-site max-w-3xl space-y-6 text-[15px] leading-relaxed text-body">
-          <div className="rounded-xl border border-gold-500/40 bg-gold-100/50 p-5 text-[13.5px] text-ink">
+          <div className="rounded-xl border border-orange-500/40 bg-orange-100/50 p-5 text-[13.5px] text-ink">
             <strong>Editable template:</strong> to be reviewed and completed with legal counsel
             before final publication.
           </div>
           <h2 className="pt-2 font-heading text-xl font-bold text-ink">1. Use of this website</h2>
           <p>
-            This website provides information about Spearhead Security&rsquo;s services. Content is for
+            This website provides information about Spearhead Security Service&rsquo;s services. Content is for
             general information and does not constitute a contractual offer.
           </p>
           <h2 className="pt-2 font-heading text-xl font-bold text-ink">2. Service descriptions</h2>

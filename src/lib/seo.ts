@@ -1,4 +1,4 @@
-import { siteConfig } from "@/config/company";
+import { siteConfig, contact } from "@/config/company";
 
 type PageMeta = {
   title: string;
@@ -20,7 +20,7 @@ export function pageMetadata({ title, description, path, ogImage }: PageMeta) {
       url: canonical,
       siteName: siteConfig.brand,
       type: "website" as const,
-      images: [{ url: ogImage ?? "/images/home/hero.png" }],
+      images: [{ url: ogImage ?? "/images/home/hero.jpg" }],
     },
     twitter: {
       card: "summary_large_image" as const,
@@ -37,9 +37,28 @@ export function organizationSchema() {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: siteConfig.brand,
+    legalName: siteConfig.legalName,
     url: siteConfig.url,
+    logo: `${siteConfig.url}/brand/logo-horizontal.png`,
+    foundingDate: String(siteConfig.established),
+    founder: { "@type": "Person", name: siteConfig.founder, jobTitle: "Founder" },
     slogan: siteConfig.brandPositioning,
     description: siteConfig.description,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: contact.address.line1,
+      addressLocality: "Jaysingpur",
+      addressRegion: "Maharashtra",
+      postalCode: "416101",
+      addressCountry: "IN",
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: `+919552666896`,
+      email: contact.email.display,
+      contactType: "sales",
+      availableLanguage: ["English", "Hindi", "Marathi"],
+    },
   };
 }
 

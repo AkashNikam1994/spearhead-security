@@ -11,7 +11,7 @@ export default function Breadcrumbs({ trail }: { trail: { name: string; path: st
           <li key={item.path} className="flex items-center gap-2">
             {i > 0 && <span aria-hidden>/</span>}
             {i === trail.length - 1 ? (
-              <span aria-current="page" className="text-gold-400">{item.name}</span>
+              <span aria-current="page" className="text-orange-400">{item.name}</span>
             ) : (
               <Link href={item.path} className="hover:text-white">{item.name}</Link>
             )}

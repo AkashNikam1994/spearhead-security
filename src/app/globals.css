@@ -26,7 +26,7 @@
   }
   a:focus-visible, button:focus-visible, [tabindex]:focus-visible,
   input:focus-visible, select:focus-visible, textarea:focus-visible {
-    @apply ring-2 ring-gold-500 ring-offset-2 ring-offset-white;
+    @apply ring-2 ring-orange-500 ring-offset-2 ring-offset-white;
   }
   @media (prefers-reduced-motion: reduce) {
     html {
@@ -44,10 +44,10 @@
     @apply mx-auto w-full max-w-site px-5 md:px-8;
   }
   .eyebrow {
-    @apply text-[13px] font-semibold uppercase tracking-[0.2em] text-gold-600;
+    @apply text-[13px] font-semibold uppercase tracking-[0.2em] text-orange-600;
   }
   .eyebrow-on-dark {
-    @apply text-[13px] font-semibold uppercase tracking-[0.2em] text-gold-400;
+    @apply text-[13px] font-semibold uppercase tracking-[0.2em] text-orange-400;
   }
   .section {
     @apply py-16 md:py-24;
@@ -97,11 +97,11 @@
 }
 
 /* ── gold button sheen ────────────────────────────────────────────────────── */
-.btn-gold {
-  @apply relative overflow-hidden bg-gold-500 text-navy-950 transition-colors duration-200;
+.btn-orange {
+  @apply relative overflow-hidden bg-orange-500 text-navy-950 transition-colors duration-200;
 }
-.btn-gold:hover {
-  @apply bg-gold-400;
+.btn-orange:hover {
+  @apply bg-orange-400;
 }
 
 /* vertical timeline connector (mobile) */

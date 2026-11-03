@@ -90,6 +90,6 @@ export async function POST(req: Request) {
   return NextResponse.json({
     ok: true,
     message:
-      "Thank you for contacting Spearhead Security. Your enquiry has been recorded and our team will get in touch with you.",
+      "Thank you for contacting Spearhead Security Service. Your enquiry has been recorded and our team will get in touch with you.",
   });
 }

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Briefcase, GraduationCap, MapPin, Users } from "lucide-react";
 import { PageHero } from "@/components/ui/PageHero";
-import { SectionHeading, GoldButton } from "@/components/ui/Section";
+import { SectionHeading, OrangeButton } from "@/components/ui/Section";
 import Reveal from "@/components/ui/Reveal";
 import CareerForm from "@/components/forms/CareerForm";
 import { pageMetadata } from "@/lib/seo";
@@ -9,9 +9,9 @@ import { careerBenefits, positions } from "@/config/careers";
 import { contact } from "@/config/company";
 
 export const metadata = pageMetadata({
-  title: "Careers — Build Your Career With Spearhead Security",
+  title: "Careers — Build Your Career With Spearhead Security Service",
   description:
-    "Join Spearhead Security: security guard openings, security supervisor positions and operations management opportunities. Apply online with a two-minute application.",
+    "Join Spearhead Security Service: security guard openings, security supervisor positions and operations management opportunities. Apply online with a two-minute application.",
   path: "/careers",
 });
 
@@ -20,9 +20,9 @@ export default function CareersPage() {
     <>
       <PageHero
         eyebrow="Careers"
-        title="Build Your Career With Spearhead Security"
+        title="Build Your Career With Spearhead Security Service"
         description="Join a professional team committed to discipline, responsibility, service excellence and meaningful work."
-        image="/images/pages/careers.png"
+        image="/images/home/hero.jpg"
         compact
         trail={[{ name: "Home", path: "/" }, { name: "Careers", path: "/careers" }]}
       />
@@ -35,7 +35,7 @@ export default function CareersPage() {
             <ul className="mt-7 space-y-3.5">
               {careerBenefits.map((b) => (
                 <li key={b} className="flex items-start gap-3 text-[15px] leading-snug text-body">
-                  <GraduationCap className="mt-0.5 h-[19px] w-[19px] shrink-0 text-gold-600" aria-hidden />
+                  <GraduationCap className="mt-0.5 h-[19px] w-[19px] shrink-0 text-orange-600" aria-hidden />
                   {b}
                 </li>
               ))}
@@ -47,7 +47,7 @@ export default function CareersPage() {
             </p>
           </Reveal>
           <Reveal delay={120}>
-            <Image src="/images/pages/careers-team.png" alt="Team of Spearhead Security officers" width={1200} height={800} className="w-full rounded-2xl object-cover shadow-card" />
+            <Image src="/images/home/careers.jpg" alt="Spearhead Security Service personnel in formation" width={405} height={402} className="w-full rounded-2xl object-cover shadow-card" />
           </Reveal>
         </div>
       </section>
@@ -59,25 +59,25 @@ export default function CareersPage() {
             <SectionHeading
               eyebrow="Open Positions"
               title="Current Opportunities"
-              description="Locations listed per position are updated as operations expand. If your city isn't listed, you may still register interest."
+              description="Locations below reflect areas where Spearhead has provided services (per the company brochure). If your city isn't listed, you may still register interest."
             />
           </Reveal>
           <div className="mt-14 grid gap-6 md:grid-cols-3">
             {positions.map((pos, i) => (
               <Reveal key={pos.title} delay={i * 90}>
                 <div className="flex h-full flex-col rounded-xl border border-slate-200 bg-white p-7 shadow-card">
-                  <Briefcase className="h-7 w-7 text-gold-600" aria-hidden />
+                  <Briefcase className="h-7 w-7 text-orange-600" aria-hidden />
                   <h2 className="mt-4 font-heading text-[17px] font-bold text-ink">{pos.title}</h2>
-                  <p className="mt-1 text-[12.5px] font-semibold uppercase tracking-wider text-gold-600">{pos.type}</p>
+                  <p className="mt-1 text-[12.5px] font-semibold uppercase tracking-wider text-orange-600">{pos.type}</p>
                   <p className="mt-3 flex-1 text-[13.5px] leading-relaxed text-body">{pos.description}</p>
                   <ul className="mt-4 border-t border-slate-100 pt-4">
                     {pos.locations.map((l) => (
                       <li key={l} className="flex items-center gap-2 text-[13px] text-body">
-                        <MapPin className="h-3.5 w-3.5 text-gold-600" aria-hidden /> {l}
+                        <MapPin className="h-3.5 w-3.5 text-orange-600" aria-hidden /> {l}
                       </li>
                     ))}
                   </ul>
-                  <a href="#apply" className="mt-5 inline-flex items-center gap-2 text-[14px] font-bold text-gold-600 hover:text-gold-500">
+                  <a href="#apply" className="mt-5 inline-flex items-center gap-2 text-[14px] font-bold text-orange-600 hover:text-orange-500">
                     Apply for this position →
                   </a>
                 </div>
@@ -112,15 +112,15 @@ export default function CareersPage() {
           <p className="mx-auto mt-3 max-w-xl text-[15px] leading-relaxed text-white/70">
             If you have trouble with the online form, call us at{" "}
             {contact.phone.placeholder ? (
-              <span className="font-bold text-gold-400">{contact.phone.display}</span>
+              <span className="font-bold text-orange-400">{contact.phone.display}</span>
             ) : (
-              <a href={contact.phone.href} className="font-bold text-gold-400">{contact.phone.display}</a>
+              <a href={contact.phone.href} className="font-bold text-orange-400">{contact.phone.display}</a>
             )}{" "}
             or email{" "}
             {contact.email.placeholder ? (
-              <span className="font-bold text-gold-400">{contact.email.display}</span>
+              <span className="font-bold text-orange-400">{contact.email.display}</span>
             ) : (
-              <a href={contact.email.href} className="font-bold text-gold-400">{contact.email.display}</a>
+              <a href={contact.email.href} className="font-bold text-orange-400">{contact.email.display}</a>
             )}.
           </p>
         </div>

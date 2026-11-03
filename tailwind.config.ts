@@ -5,24 +5,31 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Brand system sampled from the Spearhead Security Service brochure/logo:
+        // navy blue · burgundy · orange
         navy: {
-          950: "#081524",
-          900: "#0D2035",
-          800: "#122A45",
-          700: "#173D5B",
-          600: "#1E4E75",
-          500: "#2A6190",
+          950: "#0A2540",
+          900: "#123F62",
+          800: "#164A74",
+          700: "#1A5686",
+          600: "#216398",
+          500: "#2A74AC",
         },
-        gold: {
-          600: "#A8843F",
-          500: "#C29A51",
-          400: "#D4B072",
-          300: "#E3C896",
-          100: "#F5EBD8",
+        maroon: {
+          700: "#5A1024",
+          600: "#79162D",
+          500: "#8F1D38",
         },
-        ink: "#202B38",
-        body: "#637083",
-        mist: "#F3F5F7",
+        orange: {
+          600: "#D96A15",
+          500: "#F17B24",
+          400: "#F59253",
+          300: "#F8B183",
+          100: "#FCE9DB",
+        },
+        ink: "#253242",
+        body: "#5B6B7C",
+        mist: "#F0F1F1",
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
@@ -32,8 +39,8 @@ const config: Config = {
         site: "1280px",
       },
       boxShadow: {
-        card: "0 6px 24px -8px rgba(13, 32, 53, 0.12)",
-        cardHover: "0 20px 44px -12px rgba(13, 32, 53, 0.22)",
+        card: "0 6px 24px -8px rgba(18, 63, 98, 0.12)",
+        cardHover: "0 20px 44px -12px rgba(18, 63, 98, 0.22)",
       },
     },
   },

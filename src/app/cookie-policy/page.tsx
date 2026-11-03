@@ -1,9 +1,9 @@
-import { PageHero } from "@/components/ui/PageHero";
+﻿import { PageHero } from "@/components/ui/PageHero";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Cookie Policy",
-  description: "How cookies are used on the Spearhead Security website.",
+  description: "How cookies are used on the Spearhead Security Service website.",
   path: "/cookie-policy",
 });
 
@@ -13,13 +13,13 @@ export default function CookiePolicyPage() {
       <PageHero
         eyebrow="Legal"
         title="Cookie Policy"
-        image="/images/pages/contact.png"
+        image="/images/home/hero.jpg"
         compact
         trail={[{ name: "Home", path: "/" }, { name: "Cookie Policy", path: "/cookie-policy" }]}
       />
       <section className="section">
         <div className="container-site max-w-3xl space-y-6 text-[15px] leading-relaxed text-body">
-          <div className="rounded-xl border border-gold-500/40 bg-gold-100/50 p-5 text-[13.5px] text-ink">
+          <div className="rounded-xl border border-orange-500/40 bg-orange-100/50 p-5 text-[13.5px] text-ink">
             <strong>Editable template:</strong> to be adapted if analytics or marketing cookies are
             introduced. Currently the site sets no persistent tracking cookies.
           </div>

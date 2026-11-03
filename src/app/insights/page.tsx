@@ -26,7 +26,7 @@ export default function InsightsPage() {
         eyebrow="Insights"
         title="Security Insights & Perspectives"
         description="Educational articles on security operations, workforce development and risk management — written from an operational perspective."
-        image="/images/pages/insights.png"
+        image="/images/home/hero.jpg"
         trail={[{ name: "Home", path: "/" }, { name: "Insights", path: "/insights" }]}
       />
 
@@ -42,13 +42,13 @@ export default function InsightsPage() {
                 <div className="relative min-h-[240px] bg-navy-900 lg:min-h-[320px]">
                   <div className="card-img absolute inset-0 bg-gradient-to-br from-navy-800 via-navy-900 to-navy-950" />
                   {isDraft(featured) && (
-                    <span className="absolute left-4 top-4 rounded-full bg-gold-500 px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider text-navy-950">
+                    <span className="absolute left-4 top-4 rounded-full bg-orange-500 px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider text-navy-950">
                       Draft — in review
                     </span>
                   )}
                 </div>
                 <div className="p-8 md:p-10">
-                  <span className="text-[12.5px] font-bold uppercase tracking-[0.16em] text-gold-600">
+                  <span className="text-[12.5px] font-bold uppercase tracking-[0.16em] text-orange-600">
                     {featured.category} · Featured
                   </span>
                   <h2 className="mt-3 font-heading text-[1.5rem] font-extrabold leading-snug text-ink group-hover:text-navy-700 md:text-[1.8rem]">
@@ -56,10 +56,10 @@ export default function InsightsPage() {
                   </h2>
                   <p className="mt-3 text-[15px] leading-relaxed text-body">{featured.excerpt}</p>
                   <div className="mt-6 flex flex-wrap items-center gap-4 text-[13px] text-body">
-                    <span className="flex items-center gap-1.5"><CalendarDays className="h-4 w-4 text-gold-600" aria-hidden /> {formatDate(featured.date)}</span>
-                    <span className="flex items-center gap-1.5"><Clock3 className="h-4 w-4 text-gold-600" aria-hidden /> {featured.readMinutes} min read</span>
+                    <span className="flex items-center gap-1.5"><CalendarDays className="h-4 w-4 text-orange-600" aria-hidden /> {formatDate(featured.date)}</span>
+                    <span className="flex items-center gap-1.5"><Clock3 className="h-4 w-4 text-orange-600" aria-hidden /> {featured.readMinutes} min read</span>
                   </div>
-                  <span className="mt-5 inline-flex items-center gap-2 text-[14px] font-bold text-gold-600">
+                  <span className="mt-5 inline-flex items-center gap-2 text-[14px] font-bold text-orange-600">
                     Read article <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
                   </span>
                 </div>
@@ -75,7 +75,7 @@ export default function InsightsPage() {
                   href={`/insights/${a.slug}`}
                   className="group flex h-full flex-col rounded-xl border border-slate-200 bg-white p-7 shadow-card transition-all hover:-translate-y-1 hover:shadow-cardHover"
                 >
-                  <span className="text-[12px] font-bold uppercase tracking-[0.16em] text-gold-600">{a.category}</span>
+                  <span className="text-[12px] font-bold uppercase tracking-[0.16em] text-orange-600">{a.category}</span>
                   {isDraft(a) && (
                     <span className="mt-2 w-fit rounded-full bg-mist px-2.5 py-1 text-[10.5px] font-extrabold uppercase tracking-wider text-body">
                       Draft — in review
@@ -106,7 +106,7 @@ export default function InsightsPage() {
                 ))}
               </div>
               <p className="mt-5 flex items-start gap-2 text-[13px] text-body">
-                <SearchX className="mt-0.5 h-4 w-4 shrink-0 text-gold-600" aria-hidden />
+                <SearchX className="mt-0.5 h-4 w-4 shrink-0 text-orange-600" aria-hidden />
                 Full-text search is available on the production deployment once the article library grows.
               </p>
             </div>

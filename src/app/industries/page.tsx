@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AlertCircle, ArrowRight, CheckCircle2 } from "lucide-react";
 import { PageHero } from "@/components/ui/PageHero";
-import { SectionHeading, GoldButton } from "@/components/ui/Section";
+import { SectionHeading, OrangeButton } from "@/components/ui/Section";
 import Reveal from "@/components/ui/Reveal";
 import { pageMetadata } from "@/lib/seo";
 import { activeIndustries } from "@/config/industries";
@@ -12,7 +12,7 @@ import { ctaButton } from "@/config/company";
 export const metadata = pageMetadata({
   title: "Industries We Serve — Corporate, Industrial, Residential & More",
   description:
-    "Spearhead Security designs security arrangements for banking, IT parks, manufacturing, healthcare, education, residential, retail, warehousing, hospitality and manufacturing environments.",
+    "Spearhead Security Service designs security arrangements for banking, IT parks, manufacturing, healthcare, education, residential, retail, warehousing, hospitality and manufacturing environments.",
   path: "/industries",
 });
 
@@ -23,7 +23,7 @@ export default function IndustriesPage() {
         eyebrow="Industries"
         title="Security Solutions Across Diverse Industries"
         description="Each environment carries different risks. Here is how we assess, design and supervise security for the sectors we serve."
-        image="/images/pages/about-us.png"
+        image="/images/extra/deployment-briefing.jpg"
         trail={[{ name: "Home", path: "/" }, { name: "Industries", path: "/industries" }]}
       />
 
@@ -34,7 +34,7 @@ export default function IndustriesPage() {
             <a
               key={ind.slug}
               href={`#${ind.slug}`}
-              className="whitespace-nowrap rounded-full border border-slate-300 bg-white px-4 py-2 text-[13px] font-semibold text-ink transition-colors hover:border-gold-500 hover:text-gold-600"
+              className="whitespace-nowrap rounded-full border border-slate-300 bg-white px-4 py-2 text-[13px] font-semibold text-ink transition-colors hover:border-orange-500 hover:text-orange-600"
             >
               {ind.name}
             </a>
@@ -50,7 +50,7 @@ export default function IndustriesPage() {
                 <div className={i % 2 === 1 ? "lg:order-2" : ""}>
                   <Image
                     src={ind.image}
-                    alt={`${ind.name} security — Spearhead Security`}
+                    alt={`${ind.name} security — Spearhead Security Service`}
                     width={1000} height={700}
                     className="w-full rounded-2xl object-cover shadow-card"
                   />
@@ -65,12 +65,12 @@ export default function IndustriesPage() {
                   <div className="mt-6 grid gap-6 sm:grid-cols-2">
                     <div>
                       <h3 className="flex items-center gap-2 font-heading text-[14.5px] font-bold text-ink">
-                        <AlertCircle className="h-[18px] w-[18px] text-gold-600" aria-hidden /> Typical Security Challenges
+                        <AlertCircle className="h-[18px] w-[18px] text-orange-600" aria-hidden /> Typical Security Challenges
                       </h3>
                       <ul className="mt-3 space-y-2.5">
                         {ind.challenges.map((c) => (
                           <li key={c} className="flex items-start gap-2 text-[13.5px] leading-snug text-body">
-                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-500" aria-hidden />
+                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-orange-500" aria-hidden />
                             {c}
                           </li>
                         ))}
@@ -78,12 +78,12 @@ export default function IndustriesPage() {
                     </div>
                     <div>
                       <h3 className="flex items-center gap-2 font-heading text-[14.5px] font-bold text-ink">
-                        <CheckCircle2 className="h-[18px] w-[18px] text-gold-600" aria-hidden /> Recommended Arrangements
+                        <CheckCircle2 className="h-[18px] w-[18px] text-orange-600" aria-hidden /> Recommended Arrangements
                       </h3>
                       <ul className="mt-3 space-y-2.5">
                         {ind.arrangements.map((a) => (
                           <li key={a} className="flex items-start gap-2 text-[13.5px] leading-snug text-body">
-                            <CheckCircle2 className="mt-0.5 h-[15px] w-[15px] shrink-0 text-gold-500" aria-hidden />
+                            <CheckCircle2 className="mt-0.5 h-[15px] w-[15px] shrink-0 text-orange-500" aria-hidden />
                             {a}
                           </li>
                         ))}
@@ -102,7 +102,7 @@ export default function IndustriesPage() {
                   <div className="mt-6 flex flex-wrap gap-3">
                     <Link
                       href="/contact"
-                      className="inline-flex items-center gap-2 text-[14px] font-bold text-gold-600 hover:text-gold-500"
+                      className="inline-flex items-center gap-2 text-[14px] font-bold text-orange-600 hover:text-orange-500"
                     >
                       Discuss your {ind.name.toLowerCase()} requirement
                       <ArrowRight className="h-4 w-4" aria-hidden />
@@ -126,14 +126,14 @@ export default function IndustriesPage() {
               <Link
                 key={s.slug}
                 href={`/services/${s.slug}`}
-                className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-2.5 text-[14px] font-semibold text-ink shadow-card transition-colors hover:border-gold-500 hover:text-gold-600"
+                className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-2.5 text-[14px] font-semibold text-ink shadow-card transition-colors hover:border-orange-500 hover:text-orange-600"
               >
                 {s.title} <ArrowRight className="h-4 w-4" aria-hidden />
               </Link>
             ))}
           </div>
           <div className="mt-12 text-center">
-            <GoldButton href={ctaButton.href}>Discuss Your Requirement</GoldButton>
+            <OrangeButton href={ctaButton.href}>Discuss Your Requirement</OrangeButton>
           </div>
         </div>
       </section>

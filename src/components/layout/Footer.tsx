@@ -14,9 +14,7 @@ const quickLinks = [
 ];
 
 export default function Footer() {
-  const publishedServices = activeServices.filter((s) =>
-    ["manned-guarding", "corporate-security", "industrial-security", "residential-security", "event-security", "electronic-security"].includes(s.slug)
-  );
+  const publishedServices = activeServices;
   const socials = [
     { label: "LinkedIn", href: socialLinks.linkedin, Icon: Linkedin },
     { label: "Facebook", href: socialLinks.facebook, Icon: Facebook },
@@ -39,7 +37,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="rounded-md border border-white/15 p-2.5 transition-colors hover:border-gold-500 hover:text-gold-400"
+                  className="rounded-md border border-white/15 p-2.5 transition-colors hover:border-orange-500 hover:text-orange-400"
                 >
                   <Icon className="h-4.5 w-4.5 h-[18px] w-[18px]" aria-hidden />
                 </a>
@@ -54,7 +52,7 @@ export default function Footer() {
           <ul className="mt-5 space-y-3 text-[14.5px]">
             {quickLinks.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="transition-colors hover:text-gold-400">
+                <Link href={l.href} className="transition-colors hover:text-orange-400">
                   {l.label}
                 </Link>
               </li>
@@ -68,7 +66,7 @@ export default function Footer() {
           <ul className="mt-5 space-y-3 text-[14.5px]">
             {publishedServices.map((s) => (
               <li key={s.slug}>
-                <Link href={`/services/${s.slug}`} className="transition-colors hover:text-gold-400">
+                <Link href={`/services/${s.slug}`} className="transition-colors hover:text-orange-400">
                   {s.title}
                 </Link>
               </li>
@@ -81,7 +79,7 @@ export default function Footer() {
           <h3 className="text-[15px] font-bold uppercase tracking-wider text-white">Contact Information</h3>
           <ul className="mt-5 space-y-4 text-[14.5px]">
             <li className="flex gap-3">
-              <MapPin className="mt-1 h-4 w-4 shrink-0 text-gold-400" aria-hidden />
+              <MapPin className="mt-1 h-4 w-4 shrink-0 text-orange-400" aria-hidden />
               <span>
                 {contact.address.line1}
                 <br />
@@ -89,31 +87,31 @@ export default function Footer() {
               </span>
             </li>
             <li className="flex gap-3">
-              <Phone className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" aria-hidden />
+              <Phone className="mt-0.5 h-4 w-4 shrink-0 text-orange-400" aria-hidden />
               {contact.phone.placeholder ? (
                 <span>{contact.phone.display}</span>
               ) : (
-                <a href={contact.phone.href} className="transition-colors hover:text-gold-400">
+                <a href={contact.phone.href} className="transition-colors hover:text-orange-400">
                   {contact.phone.display}
                 </a>
               )}
             </li>
             <li className="flex gap-3">
-              <Mail className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" aria-hidden />
+              <Mail className="mt-0.5 h-4 w-4 shrink-0 text-orange-400" aria-hidden />
               {contact.email.placeholder ? (
                 <span>{contact.email.display}</span>
               ) : (
-                <a href={contact.email.href} className="transition-colors hover:text-gold-400">
+                <a href={contact.email.href} className="transition-colors hover:text-orange-400">
                   {contact.email.display}
                 </a>
               )}
             </li>
             <li className="flex gap-3">
-              <MessageCircle className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" aria-hidden />
+              <MessageCircle className="mt-0.5 h-4 w-4 shrink-0 text-orange-400" aria-hidden />
               {contact.whatsapp.placeholder ? (
                 <span>WhatsApp: {contact.whatsapp.display}</span>
               ) : (
-                <a href={contact.whatsapp.href} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-gold-400">
+                <a href={contact.whatsapp.href} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-orange-400">
                   WhatsApp: {contact.whatsapp.display}
                 </a>
               )}
@@ -132,9 +130,9 @@ export default function Footer() {
             </span>
           </p>
           <nav aria-label="Legal" className="flex gap-6">
-            <Link href="/privacy-policy" className="transition-colors hover:text-gold-400">Privacy Policy</Link>
-            <Link href="/terms" className="transition-colors hover:text-gold-400">Terms &amp; Conditions</Link>
-            <Link href="/cookie-policy" className="transition-colors hover:text-gold-400">Cookie Policy</Link>
+            <Link href="/privacy-policy" className="transition-colors hover:text-orange-400">Privacy Policy</Link>
+            <Link href="/terms" className="transition-colors hover:text-orange-400">Terms &amp; Conditions</Link>
+            <Link href="/cookie-policy" className="transition-colors hover:text-orange-400">Cookie Policy</Link>
           </nav>
         </div>
       </div>

@@ -8,3 +8,7 @@ data/
 *.tsbuildinfo
 next-env.d.ts
 .DS_Store
+
+# Brochure source-of-truth working files (do not publish):
+brochure-ref.pdf
+brochure-assets/

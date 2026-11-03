@@ -31,19 +31,8 @@ export default function Header() {
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
-  const navServices = activeServices.filter((s) =>
-    [
-      "manned-guarding",
-      "corporate-security",
-      "industrial-security",
-      "residential-security",
-      "security-supervision",
-      "event-security",
-    ].includes(s.slug)
-  );
-  const extraServices = activeServices.filter((s) =>
-    ["electronic-security", "security-risk-assessment"].includes(s.slug)
-  );
+  // All active (brochure) services appear in the dropdown — no slug filtering.
+  const navServices = activeServices;
 
   return (
     <header className="sticky top-0 z-50">
@@ -53,11 +42,11 @@ export default function Header() {
           <div className="flex items-center gap-6">
             {!contact.phone.placeholder && (
               <a href={contact.phone.href} className="flex items-center gap-1.5 hover:text-white">
-                <Phone className="h-3.5 w-3.5 text-gold-400" aria-hidden /> {contact.phone.display}
+                <Phone className="h-3.5 w-3.5 text-orange-400" aria-hidden /> {contact.phone.display}
               </a>
             )}
             <a href={contact.email.href} className="flex items-center gap-1.5 hover:text-white">
-              <Mail className="h-3.5 w-3.5 text-gold-400" aria-hidden /> {contact.email.display}
+              <Mail className="h-3.5 w-3.5 text-orange-400" aria-hidden /> {contact.email.display}
             </a>
             {!contact.whatsapp.placeholder && (
               <a
@@ -66,12 +55,13 @@ export default function Header() {
                 rel="noopener noreferrer"
                 className="flex items-center gap-1.5 hover:text-white"
               >
-                <MessageCircle className="h-3.5 w-3.5 text-gold-400" aria-hidden /> WhatsApp
+                <MessageCircle className="h-3.5 w-3.5 text-orange-400" aria-hidden /> WhatsApp
               </a>
             )}
           </div>
-          <div className="flex items-center gap-1.5">
-            <Clock className="h-3.5 w-3.5 text-gold-400" aria-hidden /> {contact.hours}
+          <div className="flex items-center gap-1.5 min-w-0">
+            <Clock className="h-3.5 w-3.5 shrink-0 text-orange-400" aria-hidden />
+            <span className="truncate max-w-[260px]">{contact.hours}</span>
           </div>
         </div>
       </div>
@@ -83,12 +73,12 @@ export default function Header() {
         }`}
       >
         <div className="container-site flex h-[4.5rem] items-center justify-between gap-4">
-          <Link href="/" aria-label="Spearhead Security — Home" className="shrink-0">
+          <Link href="/" aria-label="Spearhead Security Service — Home" className="shrink-0">
             <LogoHorizontal />
           </Link>
 
           {/* Desktop nav */}
-          <nav aria-label="Primary" className="hidden items-center gap-7 xl:flex">
+          <nav aria-label="Primary" className="hidden items-center gap-x-6 xl:flex">
             {navigation.map((item) =>
               item.dropdown ? (
                 <div key={item.href} className="nav-item relative">
@@ -104,13 +94,13 @@ export default function Header() {
                   </Link>
                   <div className="nav-dropdown absolute left-1/2 top-full w-[42rem] -translate-x-1/2 rounded-xl border border-slate-200 bg-white p-4 shadow-cardHover">
                     <div className="grid grid-cols-2 gap-1">
-                      {[...navServices, ...extraServices].map((s) => (
+                      {navServices.map((s) => (
                         <Link
                           key={s.slug}
                           href={`/services/${s.slug}`}
                           className="group/item flex items-start gap-3 rounded-lg p-3 transition-colors hover:bg-mist"
                         >
-                          <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-gold-500" aria-hidden />
+                          <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-orange-500" aria-hidden />
                           <span>
                             <span className="block text-[14px] font-semibold text-ink group-hover/item:text-navy-700">
                               {s.title}
@@ -125,9 +115,9 @@ export default function Header() {
                     <div className="mt-2 border-t border-slate-100 pt-2">
                       <Link
                         href="/services"
-                        className="block rounded-lg px-3 py-2 text-[13.5px] font-semibold text-gold-600 hover:bg-mist"
+                        className="block rounded-lg px-3 py-2 text-[13.5px] font-semibold text-orange-600 hover:bg-mist"
                       >
-                        View all services →
+                        View all services â†’
                       </Link>
                     </div>
                   </div>
@@ -138,7 +128,7 @@ export default function Header() {
                   href={item.href}
                   className={`border-b-2 py-1 text-[15px] font-semibold transition-colors hover:text-navy-700 ${
                     isActive(item.href)
-                      ? "border-gold-500 text-navy-700"
+                      ? "border-orange-500 text-navy-700"
                       : "border-transparent text-ink"
                   }`}
                 >
@@ -146,7 +136,7 @@ export default function Header() {
                 </Link>
               )
             )}
-            <Link href={ctaButton.href} className="btn-gold hidden items-center rounded-md px-5 py-2.5 text-[14px] font-bold xl:inline-flex">
+            <Link href={ctaButton.href} className="btn-orange hidden items-center rounded-md px-5 py-2.5 text-[14px] font-bold 2xl:inline-flex">
               {ctaButton.label}
             </Link>
           </nav>
@@ -155,7 +145,7 @@ export default function Header() {
           <div className="flex items-center gap-3 xl:hidden">
             <Link
               href={ctaButton.href}
-              className="btn-gold hidden rounded-md px-4 py-2 text-[13px] font-bold sm:inline-flex"
+              className="btn-orange hidden rounded-md px-4 py-2 text-[13px] font-bold sm:inline-flex"
             >
               Request Assessment
             </Link>
@@ -203,7 +193,7 @@ export default function Header() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className={`block rounded-lg px-3 py-2.5 font-semibold ${isActive(item.href) ? "bg-white/10 text-gold-400" : "text-white/90 hover:bg-white/5"}`}
+                      className={`block rounded-lg px-3 py-2.5 font-semibold ${isActive(item.href) ? "bg-white/10 text-orange-400" : "text-white/90 hover:bg-white/5"}`}
                     >
                       {item.label}
                     </Link>
@@ -225,7 +215,7 @@ export default function Header() {
                     <Link
                       href={item.href}
                       className={`block rounded-lg px-3 py-2.5 font-semibold ${
-                        isActive(item.href) ? "bg-white/10 text-gold-400" : "text-white/90 hover:bg-white/5"
+                        isActive(item.href) ? "bg-white/10 text-orange-400" : "text-white/90 hover:bg-white/5"
                       }`}
                     >
                       {item.label}
@@ -237,12 +227,12 @@ export default function Header() {
           </nav>
           <div className="space-y-3 border-t border-white/10 p-5">
             <a href={contact.phone.href} className="flex items-center gap-2 text-[14px] text-white/75 hover:text-white">
-              <Phone className="h-4 w-4 text-gold-400" aria-hidden /> {contact.phone.display}
+              <Phone className="h-4 w-4 text-orange-400" aria-hidden /> {contact.phone.display}
             </a>
             <a href={contact.email.href} className="flex items-center gap-2 text-[14px] text-white/75 hover:text-white">
-              <Mail className="h-4 w-4 text-gold-400" aria-hidden /> {contact.email.display}
+              <Mail className="h-4 w-4 text-orange-400" aria-hidden /> {contact.email.display}
             </a>
-            <Link href={ctaButton.href} className="btn-gold flex w-full items-center justify-center rounded-md px-5 py-3 font-bold">
+            <Link href={ctaButton.href} className="btn-orange flex w-full items-center justify-center rounded-md px-5 py-3 font-bold">
               {ctaButton.label}
             </Link>
           </div>
