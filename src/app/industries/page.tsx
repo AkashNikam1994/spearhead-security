@@ -23,7 +23,7 @@ export default function IndustriesPage() {
         eyebrow="Industries"
         title="Security Solutions Across Diverse Industries"
         description="Each environment carries different risks. Here is how we assess, design and supervise security for the sectors we serve."
-        image="/images/extra/deployment-briefing.jpg"
+        image="/images/home/cta.jpg"
         trail={[{ name: "Home", path: "/" }, { name: "Industries", path: "/industries" }]}
       />
 

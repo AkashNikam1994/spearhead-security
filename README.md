@@ -107,7 +107,13 @@ background removed, and the colour system was sampled from the logo artwork:
 - Palette: Navy `#123F62` · Burgundy `#79162D` · Orange `#F17B24` · Mist `#F0F1F1` · Ink `#253242`
 
 Authentic Spearhead photographs extracted from the brochure live in `public/images/`
-(wired through the config files):
+(wired through the config files). The prep script re-encodes each photo at high
+JPEG quality and applies a 2× high-quality upscale + unsharp mask where a display
+slot is larger than the native pixels — re-run after any brochure re-extraction:
+
+```bash
+node scripts/prepare-brochure-images.mjs
+```
 
 ```
 public/images/home/…            hero band, intro, training, careers, CTA

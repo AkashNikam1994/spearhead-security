@@ -26,8 +26,8 @@ const mkdir = (p) => fs.mkdirSync(p, { recursive: true });
 const load = (f) => loadImage(fs.readFileSync(path.join(ASSETS, f)));
 const savePng = async (canvas, file) =>
   fs.writeFileSync(file, await canvas.encode("png"));
-const saveJpg = async (canvas, file, q = 0.82) =>
-  fs.writeFileSync(file, await canvas.encode("jpeg", q));
+const saveJpg = async (canvas, file, q = 90) =>
+  fs.writeFileSync(file, await canvas.encode("jpeg", q)); // q: 0–100 integer
 
 /* ── 1. high-DPI logo render + crop ─────────────────────────────────────── */
 {
@@ -132,30 +132,82 @@ console.log("logo assets written (transparent)");
 }
 
 /* ── 5. authentic photography → public/images ───────────────────────────── */
+/**
+ * Sources are embedded brochure JPEGs at their native resolution. Displayed
+ * slots can be larger than the native pixels, so each target gets:
+ *   - a modest 2× high-quality upscale when the native width is much smaller
+ *     than its largest display slot (avoids browser upscaling blur), and
+ *   - an unsharp-mask pass to restore perceived crispness, then JPEG q0.9.
+ * The hero band (2105px) is wide enough already — re-encoded only.
+ */
+const displayWidth = { img01: 1920, img02: 2105, img03: 900, img04: 640 }; // others: 640
+
+function upscale(img, scale) {
+  const canvas = createCanvas(Math.round(img.width * scale), Math.round(img.height * scale));
+  const ctx = canvas.getContext("2d");
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = "high";
+  ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+  return canvas;
+}
+
+/** Unsharp mask (3×3) — restores crispness after upscaling. amount ≈ 0.35 */
+function sharpen(canvas, amount = 0.35) {
+  const ctx = canvas.getContext("2d");
+  const { width: w, height: h } = canvas;
+  const src = ctx.getImageData(0, 0, w, h);
+  const s = src.data;
+  const out = ctx.createImageData(w, h);
+  const d = out.data;
+  const at = (x, y, c) =>
+    s[((y < 0 ? 0 : y >= h ? h - 1 : y) * w + (x < 0 ? 0 : x >= w ? w - 1 : x)) * 4 + c];
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      const i = (y * w + x) * 4;
+      for (let c = 0; c < 3; c++) {
+        const blur =
+          (at(x - 1, y, c) + at(x + 1, y, c) + at(x, y - 1, c) + at(x, y + 1, c)) / 4;
+        d[i + c] = Math.max(0, Math.min(255, s[i + c] + amount * (s[i + c] - blur)));
+      }
+      d[i + 3] = s[i + 3];
+    }
+  }
+  ctx.putImageData(out, 0, 0);
+  return canvas;
+}
+
 const photoTargets = [
-  // [source, dest, quality]
-  ["img02.jpg", "images/home/hero.jpg", 0.85],            // radio close-up banner 2105×574
-  ["img04.jpg", "images/extra/intro.jpg", 0.85],           // classroom training 967×491
-  ["img14.jpg", "images/home/training.jpg", 0.85],         // training audience 450x330
-  ["img06.jpg", "images/home/careers.jpg", 0.85],          // guard formation 405x402
-  ["img01.jpg", "images/home/cta.jpg", 0.85],              // wide monitoring strip 919x562
-  ["img06.jpg", "images/services/industrial-security.jpg", 0.85],
-  ["img01.jpg", "images/services/surveillance.jpg", 0.85],
-  ["img17.jpg", "images/services/safety-fire-fighting.jpg", 0.85],
-  ["img15.jpg", "images/services/armed-guards.jpg", 0.85],
-  ["img03.jpg", "images/extra/guards-award.jpg", 0.85],    // decorated guards at materials gate
-  ["img16.jpg", "images/extra/medal-ceremony.jpg", 0.85],  // medal ceremony at facility
-  ["img18.jpg", "images/extra/deployment-briefing.jpg", 0.85], // parking-area briefing
-  ["img13.jpg", "images/extra/fire-safety-classroom.jpg", 0.85], // fire & safety classroom
-  ["img05.jpg", "images/extra/fire-drill.jpg", 0.85],      // outdoor fire drill
+  // [source, dest, jpegQuality(0-100), upscale×]
+  ["img02.jpg", "images/home/hero.jpg", 92, 1],              // radio close-up banner 2105×574
+  ["img04.jpg", "images/extra/intro.jpg", 92, 1],            // classroom training 967×491
+  ["img01.jpg", "images/home/cta.jpg", 90, 2],               // wide monitoring strip → 1838 (full-bleed bg)
+  ["img01.jpg", "images/services/surveillance.jpg", 90, 2],
+  ["img06.jpg", "images/home/careers.jpg", 90, 2],           // guard formation 405→810
+  ["img06.jpg", "images/services/industrial-security.jpg", 90, 2],
+  ["img14.jpg", "images/home/training.jpg", 90, 2],          // training audience 450→900
+  ["img17.jpg", "images/services/safety-fire-fighting.jpg", 90, 2],
+  ["img15.jpg", "images/services/armed-guards.jpg", 90, 2],
+  ["img03.jpg", "images/extra/guards-award.jpg", 90, 1.5],   // 586→879
+  ["img16.jpg", "images/extra/medal-ceremony.jpg", 90, 2],
+  ["img18.jpg", "images/extra/deployment-briefing.jpg", 90, 2],
+  ["img13.jpg", "images/extra/fire-safety-classroom.jpg", 90, 2],
+  ["img05.jpg", "images/extra/fire-drill.jpg", 90, 2],       // 353→706
 ];
-for (const [src, dest, q] of photoTargets) {
-  const img = await load(src);
-  const canvas = createCanvas(img.width, img.height);
-  canvas.getContext("2d").drawImage(img, 0, 0);
+
+for (const [srcName, dest, q, scale] of photoTargets) {
+  const img = await load(srcName);
+  const dw = displayWidth[srcName.replace(".jpg", "")] ?? 640;
+  const needUp = img.width < dw * 0.9;
+  const effScale = needUp ? scale : 1;
+  let canvas = effScale > 1 ? upscale(img, effScale) : (() => {
+    const c = createCanvas(img.width, img.height);
+    c.getContext("2d").drawImage(img, 0, 0);
+    return c;
+  })();
+  sharpen(canvas);
   const file = path.join(PUBLIC, dest);
   mkdir(path.dirname(file));
   await saveJpg(canvas, file, q);
-  console.log("photo", dest, `${img.width}×${img.height}`);
+  console.log("photo", dest, `${img.width}×${img.height} → ${canvas.width}×${canvas.height} (×${effScale}, sharpened)`);
 }
 console.log("done");
