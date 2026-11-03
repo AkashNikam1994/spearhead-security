@@ -12,3 +12,6 @@ next-env.d.ts
 # Brochure source-of-truth working files (do not publish):
 brochure-ref.pdf
 brochure-assets/
+
+# Deployment artifacts:
+deploy/

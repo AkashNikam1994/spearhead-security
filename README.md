@@ -36,6 +36,16 @@ API test utility (used during development):
 node scripts/api-test.mjs   # exercises /api/career-applications (requires dev server)
 ```
 
+Production deployment bundle for a Node VPS:
+
+```bash
+npm run deploy:build        # builds + assembles deploy/spearhead-security/
+                            # (.tar.gz included) → upload, extract, node server.js
+```
+
+See `deploy/spearhead-security/DEPLOY.md` (also §10 below) for upload, env, PM2 and
+reverse-proxy instructions.
+
 ---
 
 ## 2. Pages & routes
@@ -188,7 +198,40 @@ No secrets are read in frontend code; the only `NEXT_PUBLIC_` value is the site 
 
 ---
 
-## 9. Project structure
+## 10. Deployment (Node VPS)
+
+```bash
+NEXT_PUBLIC_SITE_URL=https://your-domain.com npm run deploy:build
+```
+
+`next.config.mjs` uses `output: "standalone"`, so `deploy:build` produces a
+**self-contained** bundle — no `npm install` on the server:
+
+```
+deploy/
+  spearhead-security/          bundle
+    server.js                  entrypoint:  node server.js  (PORT env supported)
+    DEPLOY.md                  server instructions
+    package.json, node_modules
+    .next/  public/            app + assets
+    .env.example               copy to .env and fill in
+  spearhead-security.tar.gz    uploadable archive
+```
+
+Key points:
+
+- Set `NEXT_PUBLIC_SITE_URL` **before** building — canonical/OG URLs are baked into
+  prerendered pages at build time.
+- Copy `.env.example` → `.env` next to `server.js` (Resend email notifications optional).
+- Runtime form data goes to `./data/` next to `server.js` — ensure the service user
+  can write there (or wire PostgreSQL in `src/lib/store.ts`).
+- Run under PM2 (`pm2 start server.js --name spearhead`) on a non-root port and
+  reverse-proxy (nginx/caddy) for TLS.
+- `deploy/` and archives are git-ignored.
+
+---
+
+## 11. Project structure
 
 ```
 src/
@@ -205,16 +248,19 @@ src/
   lib/                    seo, store, rate-limit, mailer, append-json
 scripts/
   extract/render/crop/prepare brochure tools (dev deps)
-  api-test.mjs            API smoke tests
+  package-deploy.mjs       standalone deployment bundle builder (npm run deploy:build)
+  check-static-assets.mjs  verifies served chunk references resolve
+  api-test.mjs             API smoke tests
   check-image-paths.mjs   verifies every referenced asset exists
 server/db/schema.sql      PostgreSQL schema
 data/                     runtime records (git-ignored)
+deploy/                   deployment bundle output (git-ignored)
 public/images, public/brand   assets
 ```
 
 ---
 
-## 10. Pre-launch checklist (company review)
+## 12. Pre-launch checklist (company review)
 
 1. Confirm the **current workforce figure** before removing the brochure-era caption on the
    1000+ stat (`siteConfig.workforce` in `src/config/company.ts`).
@@ -237,7 +283,7 @@ public/images, public/brand   assets
 
 ---
 
-## 11. Design reference
+## 13. Design reference
 
 - Primary palette (sampled from the brochure logo): Navy `#123F62` · Burgundy `#79162D`
   · Orange `#F17B24` · Light `#F0F1F1` · Ink `#253242` · Body `#5B6B7C`.
